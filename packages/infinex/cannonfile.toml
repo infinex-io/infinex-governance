@@ -1,5 +1,5 @@
-name = "synthetix-sample-project"
-description = "Sample usage of the deployer"
+name = "infinex"
+description = "Infinex governance contracts"
 
 # `salt` here only affects proxy contract
 [setting.salt]
