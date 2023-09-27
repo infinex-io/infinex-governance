@@ -27,6 +27,10 @@ module.exports = {
     local: {
       url: 'http://localhost:8545',
     },
+    goerli: {
+      url: process.env.NETWORK_ENDPOINT || 'https://goerli.infura.io',
+      accounts: process.env.DEPLOYER_PRIVATE_KEY ? [process.env.DEPLOYER_PRIVATE_KEY] : [],
+    },
     ['optimistic-kovan']: {
       url: process.env.NETWORK_ENDPOINT || 'https://kovan.optimism.io',
       accounts: process.env.DEPLOYER_PRIVATE_KEY ? [process.env.DEPLOYER_PRIVATE_KEY] : [],

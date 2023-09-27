@@ -1,0 +1,11 @@
+{
+  "name": "@synthetixio/ecosystem-council",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "compile-contracts": "hardhat compile",
+    "size-contracts": "hardhat size-contracts"
+  }
+}
