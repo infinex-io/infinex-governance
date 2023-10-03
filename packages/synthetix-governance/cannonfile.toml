@@ -10,16 +10,16 @@ defaultValue = "governance"
 defaultValue = "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
 
 [setting.council_token_name]
-defaultValue = "Infinex Governance Module"
+defaultValue = "Synthetix Governance Module"
 
 [setting.council_token_symbol]
-defaultValue = "IGT"
+defaultValue = "SGT"
 
 [setting.first_council_members]
 defaultValue = '["0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"]'
 
 [setting.epoch_duration]
-defaultValue = 180 # days
+defaultValue = 90 # days
 
 [setting.voting_period_duration]
 defaultValue = 7 # days

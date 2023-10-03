@@ -9,6 +9,7 @@ require('hardhat-contract-sizer');
 require('solidity-coverage');
 require('@synthetixio/deployer');
 require('@synthetixio/cli');
+require('hardhat-cannon');
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
