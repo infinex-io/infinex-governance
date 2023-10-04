@@ -7,5 +7,8 @@
     "coverage": "hardhat coverage",
     "compile-contracts": "hardhat compile",
     "size-contracts": "hardhat size-contracts"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "4.9.3"
   }
 }
