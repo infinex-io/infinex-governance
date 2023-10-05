@@ -10,10 +10,11 @@ async function main() {
 
   let tx;
   let investorToken = await investorTokenFactory.deploy();
+  console.log('investor token implementation', investorToken.address);
   await investorToken.deployed();
 
   const proxy = await proxyFactory.deploy(investorToken.address);
-  console.log('investorToken', proxy.address);
+  console.log('investor token proxy', proxy.address);
   await proxy.deployed();
   investorToken = investorToken.attach(proxy.address);
 

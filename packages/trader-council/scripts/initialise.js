@@ -15,7 +15,7 @@ async function main() {
 
   const CONTRACT_ADDRESS = '0xA25E083fAC779BD8bF92D4C7a496381794eB1772';
   const DEBT_SHARE_CONTRACT = '0x34c78F826bA5750Ad17C77aAF7737359eA67cFd6';
-  const NOMINATION_START_DATE = '2023-10-05T05:30:00Z';
+  const NOMINATION_START_DATE = '2023-10-05T08:00:00Z';
   const NOMINATION_DURATION = hoursToSeconds(2.5);
   const VOTING_DURATION = hoursToSeconds(4);
   const MAX_UINT64 = BigInt(2) ** BigInt(64) - BigInt(1);
@@ -42,8 +42,8 @@ async function main() {
     tx = await electionModule[
       'initializeElectionModule(string,string,address[],uint8,uint64,uint64,uint64,address)'
     ](
-      'Infinex Treasury Councillor NFT',
-      'INXTC',
+      'Infinex Trader Councillor NFT',
+      'INXTTC',
       ['0x000000000000000000000000000000000000dead'],
       1,
       isoToSeconds(NOMINATION_START_DATE),

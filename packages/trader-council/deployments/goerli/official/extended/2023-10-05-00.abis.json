@@ -8843,7 +8843,7 @@
       "type": "event"
     }
   ],
-  "contracts/GrantsCouncil.sol:GrantsCouncil": [
+  "contracts/TraderCouncil.sol:TraderCouncil": [
     {
       "inputs": [
         {
@@ -8878,6 +8878,32 @@
     {
       "stateMutability": "payable",
       "type": "receive"
+    }
+  ],
+  "contracts/counting/BlankCounting.sol:BlankCounting": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "balanceOfOnPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
     }
   ],
   "contracts/modules/ElectionInspectionModule.sol:ElectionInspectorModule": [
@@ -12764,43 +12790,6 @@
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
-    }
-  ],
-  "contracts/TraderCouncil.sol:TraderCouncil": [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "firstImplementation",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "contr",
-          "type": "address"
-        }
-      ],
-      "name": "NotAContract",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ZeroAddress",
-      "type": "error"
-    },
-    {
-      "stateMutability": "payable",
-      "type": "fallback"
-    },
-    {
-      "stateMutability": "payable",
-      "type": "receive"
     }
   ],
   "contracts/Router.sol:Router": [
