@@ -7908,6 +7908,2010 @@
       "type": "function"
     }
   ],
+  "@synthetixio/synthetix-governance/contracts/storage/DebtShareStorage.sol:DebtShareStorage": [],
+  "@synthetixio/synthetix-governance/contracts/submodules/election/CrossChainDebtShareManager.sol:CrossChainDebtShareManager": [
+    {
+      "inputs": [],
+      "name": "AlreadyACouncilMember",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ChangesCurrentPeriod",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CrossChainDebtShareAlreadyDeclared",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DuplicateCandidates",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ElectionAlreadyEvaluated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ElectionNotEvaluated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidElectionSettings",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidEpochConfiguration",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidMerkleProof",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidMinimumActiveMembers",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "MerkleRootNotSet",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoCandidates",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoVotePower",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotACouncilMember",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotCallableInCurrentPeriod",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "VoteNotCasted",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CandidateNominated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "member",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMemberAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "member",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMemberRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address[]",
+          "name": "members",
+          "type": "address[]"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMembersDismissed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "proxy",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "CouncilTokenCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newImplementation",
+          "type": "address"
+        }
+      ],
+      "name": "CouncilTokenUpgraded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "debtShare",
+          "type": "uint256"
+        }
+      ],
+      "name": "CrossChainDebtShareDeclared",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "merkleRoot",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "blocknumber",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "CrossChainDebtShareMerkleRootSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "size",
+          "type": "uint256"
+        }
+      ],
+      "name": "DefaultBallotEvaluationBatchSizeChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "evaluatedBallots",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalBallots",
+          "type": "uint256"
+        }
+      ],
+      "name": "ElectionBatchEvaluated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalBallots",
+          "type": "uint256"
+        }
+      ],
+      "name": "ElectionEvaluated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "ElectionModuleInitialized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "EmergencyElectionStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "nominationPeriodStartDate",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "votingPeriodStartDate",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "epochEndDate",
+          "type": "uint64"
+        }
+      ],
+      "name": "EpochScheduleUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "EpochStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "tolerance",
+          "type": "uint64"
+        }
+      ],
+      "name": "MaxDateAdjustmentToleranceChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "minimumActiveMembers",
+          "type": "uint8"
+        }
+      ],
+      "name": "MinimumActiveMembersChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minNominationPeriodDuration",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minVotingPeriodDuration",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minEpochDuration",
+          "type": "uint64"
+        }
+      ],
+      "name": "MinimumEpochDurationsChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "seatCount",
+          "type": "uint8"
+        }
+      ],
+      "name": "NextEpochSeatCountChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "NominationWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ballotId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "votePower",
+          "type": "uint256"
+        }
+      ],
+      "name": "VoteRecorded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ballotId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "votePower",
+          "type": "uint256"
+        }
+      ],
+      "name": "VoteWithdrawn",
+      "type": "event"
+    }
+  ],
+  "@synthetixio/synthetix-governance/contracts/submodules/election/DebtShareManager.sol:DebtShareManager": [
+    {
+      "inputs": [],
+      "name": "AlreadyACouncilMember",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ChangesCurrentPeriod",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DebtShareContractNotSet",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DebtShareSnapshotIdNotSet",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DuplicateCandidates",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ElectionAlreadyEvaluated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ElectionNotEvaluated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidElectionSettings",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidEpochConfiguration",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidMinimumActiveMembers",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoCandidates",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoVotePower",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotACouncilMember",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotCallableInCurrentPeriod",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "VoteNotCasted",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CandidateNominated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "member",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMemberAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "member",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMemberRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address[]",
+          "name": "members",
+          "type": "address[]"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMembersDismissed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "proxy",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "CouncilTokenCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newImplementation",
+          "type": "address"
+        }
+      ],
+      "name": "CouncilTokenUpgraded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "contractAddress",
+          "type": "address"
+        }
+      ],
+      "name": "DebtShareContractSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "snapshotId",
+          "type": "uint256"
+        }
+      ],
+      "name": "DebtShareSnapshotIdSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "size",
+          "type": "uint256"
+        }
+      ],
+      "name": "DefaultBallotEvaluationBatchSizeChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "evaluatedBallots",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalBallots",
+          "type": "uint256"
+        }
+      ],
+      "name": "ElectionBatchEvaluated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalBallots",
+          "type": "uint256"
+        }
+      ],
+      "name": "ElectionEvaluated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "ElectionModuleInitialized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "EmergencyElectionStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "nominationPeriodStartDate",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "votingPeriodStartDate",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "epochEndDate",
+          "type": "uint64"
+        }
+      ],
+      "name": "EpochScheduleUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "EpochStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "tolerance",
+          "type": "uint64"
+        }
+      ],
+      "name": "MaxDateAdjustmentToleranceChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "minimumActiveMembers",
+          "type": "uint8"
+        }
+      ],
+      "name": "MinimumActiveMembersChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minNominationPeriodDuration",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minVotingPeriodDuration",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minEpochDuration",
+          "type": "uint64"
+        }
+      ],
+      "name": "MinimumEpochDurationsChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "seatCount",
+          "type": "uint8"
+        }
+      ],
+      "name": "NextEpochSeatCountChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "NominationWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ballotId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "votePower",
+          "type": "uint256"
+        }
+      ],
+      "name": "VoteRecorded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ballotId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "votePower",
+          "type": "uint256"
+        }
+      ],
+      "name": "VoteWithdrawn",
+      "type": "event"
+    }
+  ],
+  "contracts/CoreContributorCouncil.sol:CoreContributorCouncil": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "firstImplementation",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "contr",
+          "type": "address"
+        }
+      ],
+      "name": "NotAContract",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "type": "error"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "contracts/interfaces/IElectionCoreContributor.sol:IElectionCoreContributor": [
+    {
+      "inputs": [],
+      "name": "getCoreContributorToken",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "setCoreContributorToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "contracts/modules/ElectionInspectionModule.sol:ElectionInspectorModule": [
+    {
+      "inputs": [],
+      "name": "AlreadyACouncilMember",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ChangesCurrentPeriod",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DuplicateCandidates",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ElectionAlreadyEvaluated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ElectionNotEvaluated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidElectionSettings",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidEpochConfiguration",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidMinimumActiveMembers",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoCandidates",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoVotePower",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotACouncilMember",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotCallableInCurrentPeriod",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "VoteNotCasted",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CandidateNominated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "member",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMemberAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "member",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMemberRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address[]",
+          "name": "members",
+          "type": "address[]"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "CouncilMembersDismissed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "proxy",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "CouncilTokenCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newImplementation",
+          "type": "address"
+        }
+      ],
+      "name": "CouncilTokenUpgraded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "size",
+          "type": "uint256"
+        }
+      ],
+      "name": "DefaultBallotEvaluationBatchSizeChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "evaluatedBallots",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalBallots",
+          "type": "uint256"
+        }
+      ],
+      "name": "ElectionBatchEvaluated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalBallots",
+          "type": "uint256"
+        }
+      ],
+      "name": "ElectionEvaluated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "ElectionModuleInitialized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "EmergencyElectionStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "nominationPeriodStartDate",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "votingPeriodStartDate",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "epochEndDate",
+          "type": "uint64"
+        }
+      ],
+      "name": "EpochScheduleUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "EpochStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "tolerance",
+          "type": "uint64"
+        }
+      ],
+      "name": "MaxDateAdjustmentToleranceChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "minimumActiveMembers",
+          "type": "uint8"
+        }
+      ],
+      "name": "MinimumActiveMembersChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minNominationPeriodDuration",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minVotingPeriodDuration",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "minEpochDuration",
+          "type": "uint64"
+        }
+      ],
+      "name": "MinimumEpochDurationsChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "seatCount",
+          "type": "uint8"
+        }
+      ],
+      "name": "NextEpochSeatCountChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "NominationWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ballotId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "votePower",
+          "type": "uint256"
+        }
+      ],
+      "name": "VoteRecorded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ballotId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "votePower",
+          "type": "uint256"
+        }
+      ],
+      "name": "VoteWithdrawn",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "ballotId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBallotCandidatesInEpoch",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBallotVotedAtEpoch",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "ballotId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBallotVotesInEpoch",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCandidateVotesInEpoch",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getElectionWinnersInEpoch",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getEpochEndDateForIndex",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getEpochStartDateForIndex",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getNominationPeriodStartDateForIndex",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getNomineesAtEpoch",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "getVotingPeriodStartDateForIndex",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "hasVotedInEpoch",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epochIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "wasNominated",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "contracts/modules/OwnerModule.sol:OwnerModule": [
+    {
+      "inputs": [],
+      "name": "AlreadyInitialized",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoChange",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "NotNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "Unauthorized",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "oldOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnerChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnerNominated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "acceptOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "initialOwner",
+          "type": "address"
+        }
+      ],
+      "name": "initializeOwnerModule",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isOwnerModuleInitialized",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newNominatedOwner",
+          "type": "address"
+        }
+      ],
+      "name": "nominateNewOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "nominatedOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceNomination",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "contracts/modules/UpgradeModule.sol:UpgradeModule": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "ImplementationIsSterile",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoChange",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "contr",
+          "type": "address"
+        }
+      ],
+      "name": "NotAContract",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "Unauthorized",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UpgradeSimulationFailed",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "Upgraded",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getImplementation",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newImplementation",
+          "type": "address"
+        }
+      ],
+      "name": "simulateUpgradeTo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newImplementation",
+          "type": "address"
+        }
+      ],
+      "name": "upgradeTo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "contracts/storage/CoreContributorStorage.sol:CoreContributorStorage": [],
   "@synthetixio/synthetix-governance/contracts/modules/ElectionModule.sol:ElectionModule": [
     {
       "inputs": [],
@@ -9374,1729 +11378,6 @@
       "type": "function"
     }
   ],
-  "@synthetixio/synthetix-governance/contracts/storage/DebtShareStorage.sol:DebtShareStorage": [],
-  "@synthetixio/synthetix-governance/contracts/submodules/election/CrossChainDebtShareManager.sol:CrossChainDebtShareManager": [
-    {
-      "inputs": [],
-      "name": "AlreadyACouncilMember",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "AlreadyNominated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ChangesCurrentPeriod",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "CrossChainDebtShareAlreadyDeclared",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "DuplicateCandidates",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ElectionAlreadyEvaluated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ElectionNotEvaluated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidElectionSettings",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidEpochConfiguration",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidMerkleProof",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidMinimumActiveMembers",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "MerkleRootNotSet",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NoCandidates",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NoVotePower",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotACouncilMember",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotCallableInCurrentPeriod",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotNominated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "VoteNotCasted",
-      "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "candidate",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CandidateNominated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "member",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMemberAdded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "member",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMemberRemoved",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address[]",
-          "name": "members",
-          "type": "address[]"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMembersDismissed",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "proxy",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "implementation",
-          "type": "address"
-        }
-      ],
-      "name": "CouncilTokenCreated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "newImplementation",
-          "type": "address"
-        }
-      ],
-      "name": "CouncilTokenUpgraded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "user",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "debtShare",
-          "type": "uint256"
-        }
-      ],
-      "name": "CrossChainDebtShareDeclared",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "merkleRoot",
-          "type": "bytes32"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "blocknumber",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "epoch",
-          "type": "uint256"
-        }
-      ],
-      "name": "CrossChainDebtShareMerkleRootSet",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "size",
-          "type": "uint256"
-        }
-      ],
-      "name": "DefaultBallotEvaluationBatchSizeChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "evaluatedBallots",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "totalBallots",
-          "type": "uint256"
-        }
-      ],
-      "name": "ElectionBatchEvaluated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "totalBallots",
-          "type": "uint256"
-        }
-      ],
-      "name": "ElectionEvaluated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [],
-      "name": "ElectionModuleInitialized",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "EmergencyElectionStarted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "nominationPeriodStartDate",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "votingPeriodStartDate",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "epochEndDate",
-          "type": "uint64"
-        }
-      ],
-      "name": "EpochScheduleUpdated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "EpochStarted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "tolerance",
-          "type": "uint64"
-        }
-      ],
-      "name": "MaxDateAdjustmentToleranceChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint8",
-          "name": "minimumActiveMembers",
-          "type": "uint8"
-        }
-      ],
-      "name": "MinimumActiveMembersChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minNominationPeriodDuration",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minVotingPeriodDuration",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minEpochDuration",
-          "type": "uint64"
-        }
-      ],
-      "name": "MinimumEpochDurationsChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint8",
-          "name": "seatCount",
-          "type": "uint8"
-        }
-      ],
-      "name": "NextEpochSeatCountChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "candidate",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "NominationWithdrawn",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "voter",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "bytes32",
-          "name": "ballotId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "votePower",
-          "type": "uint256"
-        }
-      ],
-      "name": "VoteRecorded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "voter",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "bytes32",
-          "name": "ballotId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "votePower",
-          "type": "uint256"
-        }
-      ],
-      "name": "VoteWithdrawn",
-      "type": "event"
-    }
-  ],
-  "@synthetixio/synthetix-governance/contracts/submodules/election/DebtShareManager.sol:DebtShareManager": [
-    {
-      "inputs": [],
-      "name": "AlreadyACouncilMember",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "AlreadyNominated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ChangesCurrentPeriod",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "DebtShareContractNotSet",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "DebtShareSnapshotIdNotSet",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "DuplicateCandidates",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ElectionAlreadyEvaluated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ElectionNotEvaluated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidElectionSettings",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidEpochConfiguration",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidMinimumActiveMembers",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NoCandidates",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NoVotePower",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotACouncilMember",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotCallableInCurrentPeriod",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotNominated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "VoteNotCasted",
-      "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "candidate",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CandidateNominated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "member",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMemberAdded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "member",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMemberRemoved",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address[]",
-          "name": "members",
-          "type": "address[]"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMembersDismissed",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "proxy",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "implementation",
-          "type": "address"
-        }
-      ],
-      "name": "CouncilTokenCreated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "newImplementation",
-          "type": "address"
-        }
-      ],
-      "name": "CouncilTokenUpgraded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "contractAddress",
-          "type": "address"
-        }
-      ],
-      "name": "DebtShareContractSet",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "snapshotId",
-          "type": "uint256"
-        }
-      ],
-      "name": "DebtShareSnapshotIdSet",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "size",
-          "type": "uint256"
-        }
-      ],
-      "name": "DefaultBallotEvaluationBatchSizeChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "evaluatedBallots",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "totalBallots",
-          "type": "uint256"
-        }
-      ],
-      "name": "ElectionBatchEvaluated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "totalBallots",
-          "type": "uint256"
-        }
-      ],
-      "name": "ElectionEvaluated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [],
-      "name": "ElectionModuleInitialized",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "EmergencyElectionStarted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "nominationPeriodStartDate",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "votingPeriodStartDate",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "epochEndDate",
-          "type": "uint64"
-        }
-      ],
-      "name": "EpochScheduleUpdated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "EpochStarted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "tolerance",
-          "type": "uint64"
-        }
-      ],
-      "name": "MaxDateAdjustmentToleranceChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint8",
-          "name": "minimumActiveMembers",
-          "type": "uint8"
-        }
-      ],
-      "name": "MinimumActiveMembersChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minNominationPeriodDuration",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minVotingPeriodDuration",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minEpochDuration",
-          "type": "uint64"
-        }
-      ],
-      "name": "MinimumEpochDurationsChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint8",
-          "name": "seatCount",
-          "type": "uint8"
-        }
-      ],
-      "name": "NextEpochSeatCountChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "candidate",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "NominationWithdrawn",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "voter",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "bytes32",
-          "name": "ballotId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "votePower",
-          "type": "uint256"
-        }
-      ],
-      "name": "VoteRecorded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "voter",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "bytes32",
-          "name": "ballotId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "votePower",
-          "type": "uint256"
-        }
-      ],
-      "name": "VoteWithdrawn",
-      "type": "event"
-    }
-  ],
-  "contracts/CoreContributorCouncil.sol:CoreContributorCouncil": [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "firstImplementation",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "contr",
-          "type": "address"
-        }
-      ],
-      "name": "NotAContract",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ZeroAddress",
-      "type": "error"
-    },
-    {
-      "stateMutability": "payable",
-      "type": "fallback"
-    },
-    {
-      "stateMutability": "payable",
-      "type": "receive"
-    }
-  ],
-  "contracts/modules/ElectionInspectionModule.sol:ElectionInspectorModule": [
-    {
-      "inputs": [],
-      "name": "AlreadyACouncilMember",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "AlreadyNominated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ChangesCurrentPeriod",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "DuplicateCandidates",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ElectionAlreadyEvaluated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ElectionNotEvaluated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidElectionSettings",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidEpochConfiguration",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "InvalidMinimumActiveMembers",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NoCandidates",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NoVotePower",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotACouncilMember",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotCallableInCurrentPeriod",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NotNominated",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "VoteNotCasted",
-      "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "candidate",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CandidateNominated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "member",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMemberAdded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "member",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMemberRemoved",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address[]",
-          "name": "members",
-          "type": "address[]"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "CouncilMembersDismissed",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "proxy",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "implementation",
-          "type": "address"
-        }
-      ],
-      "name": "CouncilTokenCreated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "newImplementation",
-          "type": "address"
-        }
-      ],
-      "name": "CouncilTokenUpgraded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "size",
-          "type": "uint256"
-        }
-      ],
-      "name": "DefaultBallotEvaluationBatchSizeChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "evaluatedBallots",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "totalBallots",
-          "type": "uint256"
-        }
-      ],
-      "name": "ElectionBatchEvaluated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "totalBallots",
-          "type": "uint256"
-        }
-      ],
-      "name": "ElectionEvaluated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [],
-      "name": "ElectionModuleInitialized",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "EmergencyElectionStarted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "nominationPeriodStartDate",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "votingPeriodStartDate",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "epochEndDate",
-          "type": "uint64"
-        }
-      ],
-      "name": "EpochScheduleUpdated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "EpochStarted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "tolerance",
-          "type": "uint64"
-        }
-      ],
-      "name": "MaxDateAdjustmentToleranceChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint8",
-          "name": "minimumActiveMembers",
-          "type": "uint8"
-        }
-      ],
-      "name": "MinimumActiveMembersChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minNominationPeriodDuration",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minVotingPeriodDuration",
-          "type": "uint64"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint64",
-          "name": "minEpochDuration",
-          "type": "uint64"
-        }
-      ],
-      "name": "MinimumEpochDurationsChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint8",
-          "name": "seatCount",
-          "type": "uint8"
-        }
-      ],
-      "name": "NextEpochSeatCountChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "candidate",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "NominationWithdrawn",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "voter",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "bytes32",
-          "name": "ballotId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "votePower",
-          "type": "uint256"
-        }
-      ],
-      "name": "VoteRecorded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "voter",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "bytes32",
-          "name": "ballotId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "votePower",
-          "type": "uint256"
-        }
-      ],
-      "name": "VoteWithdrawn",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "ballotId",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getBallotCandidatesInEpoch",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "user",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getBallotVotedAtEpoch",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "ballotId",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getBallotVotesInEpoch",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "candidate",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getCandidateVotesInEpoch",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getElectionWinnersInEpoch",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getEpochEndDateForIndex",
-      "outputs": [
-        {
-          "internalType": "uint64",
-          "name": "",
-          "type": "uint64"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getEpochStartDateForIndex",
-      "outputs": [
-        {
-          "internalType": "uint64",
-          "name": "",
-          "type": "uint64"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getNominationPeriodStartDateForIndex",
-      "outputs": [
-        {
-          "internalType": "uint64",
-          "name": "",
-          "type": "uint64"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getNomineesAtEpoch",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "getVotingPeriodStartDateForIndex",
-      "outputs": [
-        {
-          "internalType": "uint64",
-          "name": "",
-          "type": "uint64"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "user",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "hasVotedInEpoch",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "candidate",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "epochIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "wasNominated",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
-  ],
   "contracts/modules/ElectionModule.sol:ElectionModule": [
     {
       "inputs": [],
@@ -11180,6 +11461,11 @@
     },
     {
       "inputs": [],
+      "name": "MissingCoreContributorToken",
+      "type": "error"
+    },
+    {
+      "inputs": [],
       "name": "NoCandidates",
       "type": "error"
     },
@@ -11222,6 +11508,11 @@
     {
       "inputs": [],
       "name": "NotNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyCoreContributor",
       "type": "error"
     },
     {
@@ -11287,6 +11578,19 @@
         }
       ],
       "name": "CandidateNominated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newToken",
+          "type": "address"
+        }
+      ],
+      "name": "CoreContributorTokenUpdated",
       "type": "event"
     },
     {
@@ -11889,6 +12193,19 @@
     },
     {
       "inputs": [],
+      "name": "getCoreContributorToken",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "getCouncilMembers",
       "outputs": [
         {
@@ -12396,6 +12713,19 @@
     {
       "inputs": [
         {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "setCoreContributorToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "bytes32",
           "name": "merkleRoot",
           "type": "bytes32"
@@ -12558,258 +12888,6 @@
     {
       "inputs": [],
       "name": "withdrawVote",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ],
-  "contracts/modules/OwnerModule.sol:OwnerModule": [
-    {
-      "inputs": [],
-      "name": "AlreadyInitialized",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NoChange",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        }
-      ],
-      "name": "NotNominated",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        }
-      ],
-      "name": "Unauthorized",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ZeroAddress",
-      "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "oldOwner",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "OwnerChanged",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "OwnerNominated",
-      "type": "event"
-    },
-    {
-      "inputs": [],
-      "name": "acceptOwnership",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "initialOwner",
-          "type": "address"
-        }
-      ],
-      "name": "initializeOwnerModule",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "isOwnerModuleInitialized",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "newNominatedOwner",
-          "type": "address"
-        }
-      ],
-      "name": "nominateNewOwner",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "nominatedOwner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "renounceNomination",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ],
-  "contracts/modules/UpgradeModule.sol:UpgradeModule": [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "implementation",
-          "type": "address"
-        }
-      ],
-      "name": "ImplementationIsSterile",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "NoChange",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "contr",
-          "type": "address"
-        }
-      ],
-      "name": "NotAContract",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        }
-      ],
-      "name": "Unauthorized",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "UpgradeSimulationFailed",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ZeroAddress",
-      "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "implementation",
-          "type": "address"
-        }
-      ],
-      "name": "Upgraded",
-      "type": "event"
-    },
-    {
-      "inputs": [],
-      "name": "getImplementation",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "newImplementation",
-          "type": "address"
-        }
-      ],
-      "name": "simulateUpgradeTo",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "newImplementation",
-          "type": "address"
-        }
-      ],
-      "name": "upgradeTo",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

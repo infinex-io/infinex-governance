@@ -13,7 +13,7 @@ contract ElectionModule is SynthetixElectionModule, IElectionCoreContributor, Co
     error OnlyCoreContributor();
     error MissingCoreContributorToken();
 
-    function setCoreContributorToken(address token) public virtual override onlyOwner {
+    function setCoreContributorToken(address token) public virtual override onlyOwner onlyInPeriod(ElectionPeriod.Administration) {
         _ccStore().token = token;
         emit CoreContributorTokenUpdated(token);
     }

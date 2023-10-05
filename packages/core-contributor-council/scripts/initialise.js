@@ -14,10 +14,11 @@ async function main() {
   );
 
   const OWNER = '';
-  const CONTRACT_ADDRESS = '0x314bcf8bDc2b8f08587099455C961b5CE77B1f1b';
+  const CC_TOKEN = '0xb178437340716381bF0990C15a6e26F3B2250b71';
+  const CONTRACT_ADDRESS = '0x59D5b19f9BD974777e94369232FC44b827acF284';
   const DEBT_SHARE_CONTRACT = '0xcc7C7a5ED4f068331a009FB7eCC1e7ABFa4ED9B1';
   const NOMINATION_START_DATE = '2023-10-05T10:00:00Z';
-  const SNAPSHOT_DATE = '2023-10-05T07:59:00Z';
+  const SNAPSHOT_DATE = '2023-10-05T09:59:00Z';
   const NOMINATION_DURATION = hoursToSeconds(2);
   const VOTING_DURATION = hoursToSeconds(4);
   const MAX_UINT64 = BigInt(2) ** BigInt(64) - BigInt(1);
@@ -89,6 +90,12 @@ async function main() {
     // );
   }
 
+  if (BigInt(await electionModule.getCoreContributorToken()) !== BigInt(CC_TOKEN)) {
+    tx = await electionModule.setCoreContributorToken(CC_TOKEN);
+    console.log('update core contributor token');
+    await tx.wait();
+  }
+
   if (OWNER && BigInt(await ownerModule.owner()) !== BigInt(OWNER)) {
     tx = await ownerModule.nominateOwner(OWNER);
     console.log('nominate owner', tx.hash);
@@ -102,7 +109,10 @@ async function main() {
     debtShareSnapshotId = BigInt(0);
   }
 
-  if (debtShareSnapshotId !== BigInt(schedule.snapshotId)) {
+  if (
+    debtShareSnapshotId !== BigInt(schedule.snapshotId) &&
+    schedule.nominationStartDate * 1000 <= Date.now()
+  ) {
     tx = await electionModule.setDebtShareSnapshotId(schedule.snapshotId);
     console.log('set snapshot id', tx.hash);
     await tx.wait();
