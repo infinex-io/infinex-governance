@@ -13,8 +13,9 @@ async function main() {
     'contracts/modules/OwnerModule.sol:OwnerModule'
   );
 
+  const OWNER = '';
   const CONTRACT_ADDRESS = '0x86ba3f8C50611E6243BDf611cEEDfE9CE088DfCc';
-  const DEBT_SHARE_CONTRACT = '0xD2bB10738eC91390D77eeb1010AA1c466fC905Ee';
+  const DEBT_SHARE_CONTRACT = '0xcc7C7a5ED4f068331a009FB7eCC1e7ABFa4ED9B1';
   const NOMINATION_START_DATE = '2023-10-05T10:00:00Z';
   const NOMINATION_DURATION = hoursToSeconds(2);
   const VOTING_DURATION = hoursToSeconds(4);
@@ -84,6 +85,12 @@ async function main() {
     //   VOTING_DURATION + NOMINATION_DURATION + isoToSeconds(NOMINATION_START_DATE),
     //   DEBT_SHARE_CONTRACT
     // );
+  }
+
+  if (OWNER && BigInt(await ownerModule.owner()) !== BigInt(OWNER)) {
+    tx = await ownerModule.nominateOwner(OWNER);
+    console.log('nominate owner', tx.hash);
+    await tx.wait();
   }
 
   console.log('done');
