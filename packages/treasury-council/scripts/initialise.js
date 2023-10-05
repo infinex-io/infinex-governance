@@ -15,11 +15,11 @@ async function main() {
   );
 
   const OWNER = '';
-  const CONTRACT_ADDRESS = '0x6E6305431c47B3BB6Fb75723A2C75C6486A7947b';
-  const DEBT_SHARE_CONTRACT = '0xD2bB10738eC91390D77eeb1010AA1c466fC905Ee';
-  const SNAPSHOT_DATE = '2023-10-05T08:29:00Z';
-  const NOMINATION_START_DATE = '2023-10-05T08:30:00Z';
-  const NOMINATION_DURATION = minutesToSeconds(10);
+  const CONTRACT_ADDRESS = '0xe20f28cE6B3Ea5340BF19E95C213D44Ab03E0108';
+  const DEBT_SHARE_CONTRACT = '0x8ac262c59f8fE17A08637136491Ef52934118c39';
+  const SNAPSHOT_DATE = '2023-10-05T10:20:00Z';
+  const NOMINATION_START_DATE = '2023-10-05T10:19:00Z';
+  const NOMINATION_DURATION = hoursToSeconds(2);
   const VOTING_DURATION = hoursToSeconds(4);
   const MAX_UINT64 = BigInt(2) ** BigInt(64) - BigInt(1);
 
@@ -103,7 +103,10 @@ async function main() {
     debtShareSnapshotId = BigInt(0);
   }
 
-  if (debtShareSnapshotId !== BigInt(schedule.snapshotId)) {
+  if (
+    debtShareSnapshotId !== BigInt(schedule.snapshotId) &&
+    schedule.nominationStartDate * 1000 <= Date.now()
+  ) {
     tx = await electionModule.setDebtShareSnapshotId(schedule.snapshotId);
     console.log('set snapshot id', tx.hash);
     await tx.wait();

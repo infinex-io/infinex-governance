@@ -15,19 +15,23 @@ async function main() {
   const INITIAL_INVESTORS = ['0x2b60F290db1541AFF79b71b707453d36B01a86B8'];
   const OWNER = '0x2b60F290db1541AFF79b71b707453d36B01a86B8';
 
-  const counting = await blankCountingFactory.deploy();
-  console.log('blank counting', counting.address);
-  await counting.deployed();
+  const gasPrice = undefined; // (await ethers.provider.getGasPrice()).mul(2);
 
-  const ccToken = await ccTokenFactory.deploy(OWNER, INITIAL_MEMBERS);
+  const ccToken = await ccTokenFactory.deploy(OWNER, INITIAL_MEMBERS, { gasPrice });
   console.log('cc token', ccToken.address);
   await ccToken.deployed();
 
-  const investorToken = await investorTokenFactory.deploy(OWNER, INITIAL_INVESTORS);
+  const counting = await blankCountingFactory.deploy({ gasPrice });
+  console.log('blank counting', counting.address);
+  await counting.deployed();
+
+  const investorToken = await investorTokenFactory.deploy(OWNER, INITIAL_INVESTORS, { gasPrice });
   console.log('investor token', investorToken.address);
   await investorToken.deployed();
 
-  const investorCounting = await investorCountingFactory.deploy(investorToken.address);
+  const investorCounting = await investorCountingFactory.deploy(investorToken.address, {
+    gasPrice,
+  });
   console.log('investorCounting', investorCounting.address);
   await investorCounting.deployed();
 

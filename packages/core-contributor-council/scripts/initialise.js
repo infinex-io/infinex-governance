@@ -14,7 +14,7 @@ async function main() {
   );
 
   const OWNER = '';
-  const CC_TOKEN = '0xb178437340716381bF0990C15a6e26F3B2250b71';
+  const CC_TOKEN = '0x582b52C31Ebb5F16Fd31fbA034A35394F90f9CD9';
   const CONTRACT_ADDRESS = '0x59D5b19f9BD974777e94369232FC44b827acF284';
   const DEBT_SHARE_CONTRACT = '0xcc7C7a5ED4f068331a009FB7eCC1e7ABFa4ED9B1';
   const NOMINATION_START_DATE = '2023-10-05T10:00:00Z';
@@ -92,7 +92,7 @@ async function main() {
 
   if (BigInt(await electionModule.getCoreContributorToken()) !== BigInt(CC_TOKEN)) {
     tx = await electionModule.setCoreContributorToken(CC_TOKEN);
-    console.log('update core contributor token');
+    console.log('update core contributor token', tx.hash);
     await tx.wait();
   }
 

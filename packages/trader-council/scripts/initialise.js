@@ -103,7 +103,10 @@ async function main() {
     debtShareSnapshotId = BigInt(0);
   }
 
-  if (debtShareSnapshotId !== BigInt(schedule.snapshotId)) {
+  if (
+    debtShareSnapshotId !== BigInt(schedule.snapshotId) &&
+    schedule.nominationStartDate * 1000 <= Date.now()
+  ) {
     tx = await electionModule.setDebtShareSnapshotId(schedule.snapshotId);
     console.log('set snapshot id', tx.hash);
     await tx.wait();
