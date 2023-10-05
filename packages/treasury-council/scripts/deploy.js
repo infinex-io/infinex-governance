@@ -26,7 +26,7 @@ async function main() {
   console.log('accepting ownership', tx.hash);
   await tx.wait();
 
-  tx = await investorToken.initialize('Infinex Benefactor NFT', 'INXBF');
+  tx = await investorToken.initialize('Infinex Benefactor', 'INXBF');
   console.log('initialize', tx.hash);
   await tx.wait();
 

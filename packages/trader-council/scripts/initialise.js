@@ -42,7 +42,7 @@ async function main() {
     tx = await electionModule[
       'initializeElectionModule(string,string,address[],uint8,uint64,uint64,uint64,address)'
     ](
-      'Infinex Trader Councillor NFT',
+      'Infinex Trader Councillor',
       'INXTTC',
       ['0x000000000000000000000000000000000000dead'],
       1,
@@ -75,7 +75,7 @@ async function main() {
     // TODO dont do the test network version
 
     // tx = await electionModule.initializeElectionModule(
-    //   'Infinex Trader Councillor NFT',
+    //   'Infinex Trader Councillor',
     //   'INXTTC',
     //   ['0x000000000000000000000000000000000000dead'],
     //   1,
