@@ -1,5 +1,5 @@
 const { TASK_VERIFY_VERIFY } = require('@nomiclabs/hardhat-etherscan/dist/src/constants');
-const { ethers, network } = require('hardhat');
+const { ethers } = require('hardhat');
 
 async function main() {
   const PROXY_ADDRESS = '0xb446da55879238189614C2A34F04927362D4fB3b';

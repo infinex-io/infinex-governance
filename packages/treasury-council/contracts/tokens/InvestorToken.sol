@@ -23,21 +23,4 @@ contract InvestorToken is Ownable, UUPSImplementation, ERC721HistoricalBalance {
     function burn(uint256 tokenId) public virtual onlyOwner {
         _burn(tokenId);
     }
-
-    function transferFrom(
-        address,
-        address,
-        uint256
-    ) public virtual override {
-        revert TokenIsNotTransferable();
-    }
-
-    function safeTransferFrom(
-        address,
-        address,
-        uint256,
-        bytes memory
-    ) public virtual override {
-        revert TokenIsNotTransferable();
-    }
 }
