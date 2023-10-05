@@ -13,8 +13,8 @@ contract InvestorCounting is IDebtShare {
         token = _token;
     }
 
-    function balanceOfOnPeriod(address account, uint periodId) external override view returns (uint) {
-        return token.balanceOfAt(account, periodId);
+    function balanceOfOnPeriod(address account, uint timepoint) external override view returns (uint) {
+        return token.getPastVotes()(account, timepoint);
     }
 
 }

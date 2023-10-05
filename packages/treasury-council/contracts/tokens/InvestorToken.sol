@@ -1,23 +1,21 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@synthetixio/core-contracts/contracts/proxy/UUPSImplementation.sol";
-import "@synthetixio/core-contracts/contracts/ownership/Ownable.sol";
-import "@synthetixio/core-contracts/contracts/token/ERC721HistoricalBalance.sol";
+import "@openzeppelin/contracts/access/Ownable2Step.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol";
 
-contract InvestorToken is Ownable, UUPSImplementation, ERC721HistoricalBalance {
-    error TokenIsNotTransferable();
+contract InvestorToken is ERC721Votes, Ownable2Step {
 
-    function initialize(string memory tokenName, string memory tokenSymbol) public onlyOwner {
-        _initialize(tokenName, tokenSymbol, "");
-    }
+    constructor(address owner, address[] calldata initialInvestors) ERC721("Infinex Benefactor", "INXBF") {}
+        for (uint i = 0; i < members.length; i++) {
+            mint(members[i]);
+        }
 
-    function upgradeTo(address newImplementation) public override onlyOwner {
-        _upgradeTo(newImplementation);
+        _transferOwnership(owner);
     }
 
     function mint(address to) public virtual onlyOwner {
-        _mint(to, totalSupply);
+        _mint(to, _getTotalSupply());
     }
 
     function burn(uint256 tokenId) public virtual onlyOwner {

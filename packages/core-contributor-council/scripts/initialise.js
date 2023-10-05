@@ -13,7 +13,7 @@ async function main() {
     'contracts/modules/OwnerModule.sol:OwnerModule'
   );
 
-  const CONTRACT_ADDRESS = '0x16630c59bE96EbE58CfB79FDae34a52E46898494';
+  const CONTRACT_ADDRESS = '0x86ba3f8C50611E6243BDf611cEEDfE9CE088DfCc';
   const DEBT_SHARE_CONTRACT = '0xD2bB10738eC91390D77eeb1010AA1c466fC905Ee';
   const NOMINATION_START_DATE = '2023-10-05T10:00:00Z';
   const NOMINATION_DURATION = hoursToSeconds(2.5);
