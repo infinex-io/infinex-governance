@@ -7,14 +7,14 @@ import "../tokens/InvestorToken.sol";
 
 contract InvestorCounting is IDebtShare {
 
-    InvestorToken immutable token;
+    InvestorToken immutable public token;
 
-    constructor(InvestorCounting _token) {
+    constructor(InvestorToken _token) {
         token = _token;
     }
 
     function balanceOfOnPeriod(address account, uint periodId) external override view returns (uint) {
-        return token.getPastVotes(account, periodId);
+        return token.balanceOfAt(account, periodId);
     }
 
 }
