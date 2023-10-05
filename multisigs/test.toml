@@ -1,0 +1,41 @@
+name = "infinex-council-safes"
+version = "0.0.1"
+
+# a dummy safe with an inaccessible signer is required to ensure
+#
+[provision.dummySafe]
+source = "safe:1.3.0"
+options.salt = "29372933292357"
+options.owners = "0x0000000000000000000000000000000000000010"
+
+[provision.ccCouncilSafe]
+source = "safe-synthetix-module:0.0.1"
+options.salt = "infinexCcCouncil"
+options.election_module_address = "0xfDef3606794069c94091D8795d5C26aE919d637e"
+options.council_safe_address = "<%= imports.dummySafe.contracts.Safe.address %>"
+
+[provision.ecosystemCouncilSafe]
+source = "safe-synthetix-module:0.0.1"
+options.salt = "infinexEcosystemCouncil"
+options.election_module_address = "0xc917EE53390e115FA5dAd1ed5Eb4A9c5871cd773"
+options.council_safe_address = "<%= imports.ccCouncilSafe.imports.target_safe.contracts.Safe.address %>"
+
+[provision.traderCouncilSafe]
+source = "safe-synthetix-module:0.0.1"
+options.salt = "infinexTraderCouncil"
+options.election_module_address = "0xf7363d2d68764710f7b7DCa7e4992e37C5955DCC"
+options.council_safe_address = "<%= imports.ecosystemCouncilSafe.imports.target_safe.contracts.Safe.address %>"
+
+[provision.mainSafeWithVeto]
+source = "safe-synthetix-module:0.0.1"
+options.salt = "infinexFullVetoCouncil"
+options.election_module_address = "0x057ACD7e0ff1092be5b315089ef367f90Ed60917"
+options.council_safe_address = "<%= imports.traderCouncilSafe.imports.target_safe.contracts.Safe.address %>"
+options.initial_veto_signers = "1"
+
+[provision.mainSafeNoVeto]
+source = "safe-synthetix-module:0.0.1"
+options.salt = "infinexFullNoVetoCouncil"
+options.election_module_address = "0x057ACD7e0ff1092be5b315089ef367f90Ed60917"
+options.council_safe_address = "<%= imports.traderCouncilSafe.imports.target_safe.contracts.Safe.address %>"
+options.initial_veto_signers = "0"

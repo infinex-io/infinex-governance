@@ -5,37 +5,31 @@ version = "0.0.1"
 #
 [provision.dummySafe]
 source = "safe:1.3.0"
-options.salt = "29372933292357"
+options.salt = "29372933292359"
 options.owners = "0x0000000000000000000000000000000000000010"
 
 [provision.ccCouncilSafe]
 source = "safe-synthetix-module:0.0.1"
 options.salt = "infinexCcCouncil"
-options.election_module_address = "0xfDef3606794069c94091D8795d5C26aE919d637e"
+options.election_module_address = "0x314bcf8bDc2b8f08587099455C961b5CE77B1f1b"
 options.council_safe_address = "<%= imports.dummySafe.contracts.Safe.address %>"
 
 [provision.ecosystemCouncilSafe]
 source = "safe-synthetix-module:0.0.1"
-options.salt = "infinexEcosystemCouncil"
-options.election_module_address = "0xc917EE53390e115FA5dAd1ed5Eb4A9c5871cd773"
+#options.salt = "infinexEcosystemCouncil"
+options.election_module_address = "0xCCF664ed84DcDedcC4783707993C12b5019D6693"
 options.council_safe_address = "<%= imports.ccCouncilSafe.imports.target_safe.contracts.Safe.address %>"
 
-[provision.traderCouncilSafe]
+[provision.treasurySafe]
 source = "safe-synthetix-module:0.0.1"
-options.salt = "infinexTraderCouncil"
-options.election_module_address = "0xf7363d2d68764710f7b7DCa7e4992e37C5955DCC"
+#options.salt = "infinexTreasuryCouncil"
+options.election_module_address = "0x16630c59bE96EbE58CfB79FDae34a52E46898494"
 options.council_safe_address = "<%= imports.ecosystemCouncilSafe.imports.target_safe.contracts.Safe.address %>"
-
-[provision.mainSafeWithVeto]
-source = "safe-synthetix-module:0.0.1"
-options.salt = "infinexFullVetoCouncil"
-options.election_module_address = "0x057ACD7e0ff1092be5b315089ef367f90Ed60917"
-options.council_safe_address = "<%= imports.traderCouncilSafe.imports.target_safe.contracts.Safe.address %>"
 options.initial_veto_signers = "1"
 
-[provision.mainSafeNoVeto]
+[provision.treasuryVetoSafe]
 source = "safe-synthetix-module:0.0.1"
-options.salt = "infinexFullNoVetoCouncil"
-options.election_module_address = "0x057ACD7e0ff1092be5b315089ef367f90Ed60917"
-options.council_safe_address = "<%= imports.traderCouncilSafe.imports.target_safe.contracts.Safe.address %>"
+#options.salt = "infinexTreasuryVeto"
+options.election_module_address = "0xd4eadf38a70000473E4729a92F891821f703379f"
+options.council_safe_address = "<%= imports.dummySafe.contracts.Safe.address %>"
 options.initial_veto_signers = "0"
