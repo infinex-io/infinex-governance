@@ -17,10 +17,20 @@ contract InvestorToken is ERC721Votes, Ownable2Step {
     }
 
     function mint(address to) public virtual onlyOwner {
+        if (delegates(to) != to) {
+            _delegate(to, to);
+        }
         _mint(to, _getTotalSupply());
     }
 
     function burn(uint256 tokenId) public virtual onlyOwner {
         _burn(tokenId);
+    }
+
+    function _transfer(address from, address to, uint256) internal virtual override {
+        if (delegates(to) != to) {
+            _delegate(to, to);
+        }
+        revert TokenIsNotTransferable();
     }
 }

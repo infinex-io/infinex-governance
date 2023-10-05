@@ -18,6 +18,9 @@ contract CoreContributorToken is ERC721Votes, Ownable2Step {
     }
 
     function mint(address to) public virtual onlyOwner {
+        if (delegates(to) != to) {
+            _delegate(to, to);
+        }
         _mint(to, _getTotalSupply());
     }
 
