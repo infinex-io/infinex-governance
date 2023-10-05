@@ -7,9 +7,11 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol";
 contract CoreContributorToken is ERC721Votes, Ownable2Step {
     error TokenIsNotTransferable();
 
-    constructor(address owner, address[] calldata initialMembers) ERC721("Infinex CC", "INXCC") {
-        for (uint i = 0; i < members.length; i++) {
-            mint(members[i]);
+    constructor(address owner, address[] memory initialMembers)
+    ERC721("Infinex CC", "INXCC")
+    EIP712("INFINEX", "1") {
+        for (uint i = 0; i < initialMembers.length; i++) {
+            mint(initialMembers[i]);
         }
 
         _transferOwnership(owner);
