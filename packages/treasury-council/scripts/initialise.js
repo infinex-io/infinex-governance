@@ -13,11 +13,11 @@ async function main() {
     'contracts/modules/OwnerModule.sol:OwnerModule'
   );
 
-  const CONTRACT_ADDRESS = '0xA25E083fAC779BD8bF92D4C7a496381794eB1772';
-  const DEBT_SHARE_CONTRACT = '0x34c78F826bA5750Ad17C77aAF7737359eA67cFd6';
+  const CONTRACT_ADDRESS = '0xd4eadf38a70000473E4729a92F891821f703379f';
+  const DEBT_SHARE_CONTRACT = '0x3b56cf08535CC9cc812d19478795815599d1921D';
   const NOMINATION_START_DATE = '2023-10-05T07:00:00Z';
-  const NOMINATION_DURATION = hoursToSeconds(2.5);
-  const VOTING_DURATION = hoursToSeconds(4);
+  const NOMINATION_DURATION = hoursToSeconds(1);
+  const VOTING_DURATION = hoursToSeconds(3);
   const MAX_UINT64 = BigInt(2) ** BigInt(64) - BigInt(1);
 
   const schedule = {

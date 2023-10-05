@@ -1,0 +1,14 @@
+{
+  "name": "@infinex/core-tokens",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "compile-contracts": "hardhat compile",
+    "size-contracts": "hardhat size-contracts"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "4.9.3"
+  }
+}
