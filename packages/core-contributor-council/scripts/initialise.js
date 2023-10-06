@@ -13,14 +13,14 @@ async function main() {
     'contracts/modules/OwnerModule.sol:OwnerModule'
   );
 
-  const OWNER = '';
-  const CC_TOKEN = '0x582b52C31Ebb5F16Fd31fbA034A35394F90f9CD9';
-  const CONTRACT_ADDRESS = '0x59D5b19f9BD974777e94369232FC44b827acF284';
+  const OWNER = '0xbb89AAc08376cdBb3fB9F16cd8219C9260e50e98';
+  const CC_TOKEN = '0x582aaA914D20E01D2d4179715044256C76488f50';
+  const CONTRACT_ADDRESS = '0x68aEd12967253EE08Da91E1438Ff8Da5CccD81BE';
   const DEBT_SHARE_CONTRACT = '0xcc7C7a5ED4f068331a009FB7eCC1e7ABFa4ED9B1';
-  const NOMINATION_START_DATE = '2023-10-05T10:00:00Z';
-  const SNAPSHOT_DATE = '2023-10-05T09:59:00Z';
-  const NOMINATION_DURATION = hoursToSeconds(2);
-  const VOTING_DURATION = hoursToSeconds(4);
+  const NOMINATION_START_DATE = '2023-10-06T08:00:00Z';
+  const SNAPSHOT_DATE = '2023-10-06T08:00:00Z';
+  const NOMINATION_DURATION = hoursToSeconds(1);
+  const VOTING_DURATION = hoursToSeconds(2);
   const MAX_UINT64 = BigInt(2) ** BigInt(64) - BigInt(1);
 
   const schedule = {
@@ -90,9 +90,9 @@ async function main() {
     // );
   }
 
-  if (BigInt(await electionModule.getCoreContributorToken()) !== BigInt(CC_TOKEN)) {
-    tx = await electionModule.setCoreContributorToken(CC_TOKEN);
-    console.log('update core contributor token', tx.hash);
+  if (OWNER && BigInt(await ownerModule.owner()) !== BigInt(OWNER)) {
+    tx = await ownerModule.nominateNewOwner(OWNER);
+    console.log('nominate owner', tx.hash);
     await tx.wait();
   }
 

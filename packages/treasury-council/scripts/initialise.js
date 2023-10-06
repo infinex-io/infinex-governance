@@ -1,7 +1,6 @@
 const { ethers } = require('hardhat');
 const { daysToSeconds } = require('@synthetixio/core-js/utils/misc/dates');
 
-const minutesToSeconds = (number) => number * 60;
 const hoursToSeconds = (number) => number * 60 * 60;
 const isoToSeconds = (time) => Math.round(new Date(time).getTime() / 1000);
 async function main() {
@@ -14,13 +13,13 @@ async function main() {
     'contracts/modules/OwnerModule.sol:OwnerModule'
   );
 
-  const OWNER = '';
-  const CONTRACT_ADDRESS = '0xe20f28cE6B3Ea5340BF19E95C213D44Ab03E0108';
-  const DEBT_SHARE_CONTRACT = '0x8ac262c59f8fE17A08637136491Ef52934118c39';
-  const SNAPSHOT_DATE = '2023-10-05T10:20:00Z';
-  const NOMINATION_START_DATE = '2023-10-05T10:19:00Z';
-  const NOMINATION_DURATION = hoursToSeconds(2);
-  const VOTING_DURATION = hoursToSeconds(4);
+  const OWNER = '0xbb89AAc08376cdBb3fB9F16cd8219C9260e50e98';
+  const CONTRACT_ADDRESS = '0x6Fb042D40d118f74D6D6b3676D82FAc1716431b1';
+  const DEBT_SHARE_CONTRACT = '0xd02FE0c7fb2FFa71f33Fc1785ec1e1a310EB724D';
+  const SNAPSHOT_DATE = '2023-10-06T08:00:00Z';
+  const NOMINATION_START_DATE = '2023-10-06T08:00:00Z';
+  const NOMINATION_DURATION = hoursToSeconds(1);
+  const VOTING_DURATION = hoursToSeconds(2);
   const MAX_UINT64 = BigInt(2) ** BigInt(64) - BigInt(1);
 
   const schedule = {
@@ -91,7 +90,7 @@ async function main() {
   }
 
   if (OWNER && BigInt(await ownerModule.owner()) !== BigInt(OWNER)) {
-    tx = await ownerModule.nominateOwner(OWNER);
+    tx = await ownerModule.nominateNewOwner(OWNER);
     console.log('nominate owner', tx.hash);
     await tx.wait();
   }

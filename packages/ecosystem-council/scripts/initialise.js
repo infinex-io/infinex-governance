@@ -13,11 +13,11 @@ async function main() {
     'contracts/modules/OwnerModule.sol:OwnerModule'
   );
 
-  const OWNER = '';
-  const CONTRACT_ADDRESS = '0xCCF664ed84DcDedcC4783707993C12b5019D6693';
+  const OWNER = '0xbb89AAc08376cdBb3fB9F16cd8219C9260e50e98';
+  const CONTRACT_ADDRESS = '0x4f93767a82bbeC823d30AD807eb5AAcF7Ea77B4D';
   const DEBT_SHARE_CONTRACT = '0xD2bB10738eC91390D77eeb1010AA1c466fC905Ee';
-  const SNAPSHOT_DATE = '2023-10-05T07:59:00Z';
-  const NOMINATION_START_DATE = '2023-10-05T08:00:00Z';
+  const SNAPSHOT_DATE = '2023-10-06T08:00:00Z';
+  const NOMINATION_START_DATE = '2023-10-06T08:00:00Z';
   const NOMINATION_DURATION = hoursToSeconds(2.5);
   const VOTING_DURATION = hoursToSeconds(4);
   const MAX_UINT64 = BigInt(2) ** BigInt(64) - BigInt(1);
@@ -90,7 +90,7 @@ async function main() {
   }
 
   if (OWNER && BigInt(await ownerModule.owner()) !== BigInt(OWNER)) {
-    tx = await ownerModule.nominateOwner(OWNER);
+    tx = await ownerModule.nominateNewOwner(OWNER);
     console.log('nominate owner', tx.hash);
     await tx.wait();
   }
