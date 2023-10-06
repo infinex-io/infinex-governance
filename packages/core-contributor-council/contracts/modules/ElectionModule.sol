@@ -24,11 +24,8 @@ contract ElectionModule is SynthetixElectionModule, IElectionCoreContributor, Co
 
     function nominate() public virtual override {
         address token = getCoreContributorToken();
-        if (token == address(0)) {
-            revert MissingCoreContributorToken();
-        }
 
-        if (IERC721(token).balanceOf(msg.sender) == 0) {
+        if (token != address(0) && IERC721(token).balanceOf(msg.sender) == 0) {
             revert OnlyCoreContributor();
         }
 

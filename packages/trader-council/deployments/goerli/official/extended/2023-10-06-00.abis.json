@@ -8843,7 +8843,7 @@
       "type": "event"
     }
   ],
-  "contracts/EcosystemCouncil.sol:EcosystemCouncil": [
+  "contracts/TraderCouncil.sol:TraderCouncil": [
     {
       "inputs": [
         {
@@ -8878,32 +8878,6 @@
     {
       "stateMutability": "payable",
       "type": "receive"
-    }
-  ],
-  "contracts/counting/BlankCounting.sol:BlankCounting": [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "balanceOfOnPeriod",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "pure",
-      "type": "function"
     }
   ],
   "contracts/modules/ElectionInspectionModule.sol:ElectionInspectorModule": [

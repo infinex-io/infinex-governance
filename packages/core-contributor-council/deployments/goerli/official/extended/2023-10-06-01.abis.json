@@ -7859,6 +7859,55 @@
       "type": "function"
     }
   ],
+  "@synthetixio/synthetix-governance/contracts/mocks/DebtShareMock.sol:DebtShareMock": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "periodId",
+          "type": "uint256"
+        }
+      ],
+      "name": "balanceOfOnPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "periodId",
+          "type": "uint256"
+        }
+      ],
+      "name": "setBalanceOfOnPeriod",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
   "@synthetixio/synthetix-governance/contracts/storage/DebtShareStorage.sol:DebtShareStorage": [],
   "@synthetixio/synthetix-governance/contracts/submodules/election/CrossChainDebtShareManager.sol:CrossChainDebtShareManager": [
     {
@@ -8843,7 +8892,7 @@
       "type": "event"
     }
   ],
-  "contracts/TraderCouncil.sol:TraderCouncil": [
+  "contracts/CoreContributorCouncil.sol:CoreContributorCouncil": [
     {
       "inputs": [
         {
@@ -8880,29 +8929,31 @@
       "type": "receive"
     }
   ],
-  "contracts/counting/BlankCounting.sol:BlankCounting": [
+  "contracts/interfaces/IElectionCoreContributor.sol:IElectionCoreContributor": [
     {
-      "inputs": [
+      "inputs": [],
+      "name": "getCoreContributorToken",
+      "outputs": [
         {
           "internalType": "address",
           "name": "",
           "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
         }
       ],
-      "name": "balanceOfOnPeriod",
-      "outputs": [
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
         }
       ],
-      "stateMutability": "pure",
+      "name": "setCoreContributorToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
@@ -9860,6 +9911,7 @@
       "type": "function"
     }
   ],
+  "contracts/storage/CoreContributorStorage.sol:CoreContributorStorage": [],
   "@synthetixio/synthetix-governance/contracts/modules/ElectionModule.sol:ElectionModule": [
     {
       "inputs": [],
@@ -11409,6 +11461,11 @@
     },
     {
       "inputs": [],
+      "name": "MissingCoreContributorToken",
+      "type": "error"
+    },
+    {
+      "inputs": [],
       "name": "NoCandidates",
       "type": "error"
     },
@@ -11451,6 +11508,11 @@
     {
       "inputs": [],
       "name": "NotNominated",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OnlyCoreContributor",
       "type": "error"
     },
     {
@@ -11516,6 +11578,19 @@
         }
       ],
       "name": "CandidateNominated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newToken",
+          "type": "address"
+        }
+      ],
+      "name": "CoreContributorTokenUpdated",
       "type": "event"
     },
     {
@@ -12118,6 +12193,19 @@
     },
     {
       "inputs": [],
+      "name": "getCoreContributorToken",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "getCouncilMembers",
       "outputs": [
         {
@@ -12625,6 +12713,19 @@
     {
       "inputs": [
         {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "setCoreContributorToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "bytes32",
           "name": "merkleRoot",
           "type": "bytes32"
@@ -12790,27 +12891,6 @@
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
-    }
-  ],
-  "contracts/Router.sol:Router": [
-    {
-      "inputs": [
-        {
-          "internalType": "bytes4",
-          "name": "sel",
-          "type": "bytes4"
-        }
-      ],
-      "name": "UnknownSelector",
-      "type": "error"
-    },
-    {
-      "stateMutability": "payable",
-      "type": "fallback"
-    },
-    {
-      "stateMutability": "payable",
-      "type": "receive"
     }
   ]
 }
