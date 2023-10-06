@@ -89,7 +89,11 @@ async function main() {
     // );
   }
 
-  if (OWNER && BigInt(await ownerModule.owner()) !== BigInt(OWNER)) {
+  if (
+    OWNER &&
+    BigInt(await ownerModule.owner()) !== BigInt(OWNER) &&
+    BigInt(await ownerModule.nominatedOwner()) !== BigInt(OWNER)
+  ) {
     tx = await ownerModule.nominateNewOwner(OWNER);
     console.log('nominate owner', tx.hash);
     await tx.wait();

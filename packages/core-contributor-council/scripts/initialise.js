@@ -90,9 +90,13 @@ async function main() {
     // );
   }
 
-  if (BigInt(await electionModule.getCoreContributorToken()) !== BigInt(CC_TOKEN)) {
-    tx = await electionModule.setCoreContributorToken(CC_TOKEN);
-    console.log('update core contributor token', tx.hash);
+  if (
+    OWNER &&
+    BigInt(await ownerModule.owner()) !== BigInt(OWNER) &&
+    BigInt(await ownerModule.nominatedOwner()) !== BigInt(OWNER)
+  ) {
+    tx = await ownerModule.nominateNewOwner(OWNER);
+    console.log('nominate owner', tx.hash);
     await tx.wait();
   }
 
