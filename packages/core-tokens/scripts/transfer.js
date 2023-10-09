@@ -20,12 +20,12 @@ async function main() {
   const ccToken = ccTokenFactory.attach(deployment.ccToken.address);
 
   let tx;
-  tx = await investorToken.nominateNewOwner(TREASURY_SAFE);
-  console.log('nominated investor owner', tx.hash);
+  tx = await investorToken.transferOwnership(TREASURY_SAFE);
+  console.log('nominated investor owner ' + tx.hash);
   await tx.wait();
 
-  tx = await ccToken.nominateNewOwner(INFINEX_SAFE);
-  console.log('nominated cc owner', tx.hash);
+  tx = await ccToken.transferOwnership(INFINEX_SAFE);
+  console.log('nominated cc owner ' + tx.hash);
   await tx.wait();
 
   console.log('done.');

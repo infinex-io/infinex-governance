@@ -23,7 +23,7 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
   .addOptionalParam(
     'debtShareContractName',
     'The name of the debt share contract',
-    process.env.DEBT_SHARE_CONTRACT_NAME || 'debtShareContractName'
+    process.env.DEBT_SHARE_CONTRACT_NAME || 'blankCounting'
   )
   .addOptionalParam('nftName', 'The name of the NFT contract', process.env.NFT_NAME)
   .addOptionalParam(

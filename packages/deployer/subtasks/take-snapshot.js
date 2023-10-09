@@ -32,7 +32,7 @@ subtask(
 
     if (debtShareSnapshotId === BigInt(0)) {
       tx = await electionModule.setDebtShareSnapshotId(await hre.ethers.provider.getBlockNumber());
-      logger.info('set snapshot id', tx.hash);
+      logger.info('set snapshot id ' + tx.hash);
       await tx.wait();
       logger.info('done');
     } else {

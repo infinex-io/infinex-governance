@@ -36,7 +36,7 @@ async function main() {
   let tx;
   if (BigInt(await ownerModule.owner()) !== BigInt(signer.address)) {
     tx = await ownerModule.initializeOwnerModule(signer.address);
-    console.log('claiming ownership', tx.hash);
+    console.log('claiming ownership ' + tx.hash);
     await tx.wait();
   }
 
@@ -55,17 +55,17 @@ async function main() {
       daysToSeconds(8) + isoToSeconds(NOMINATION_START_DATE),
       DEBT_SHARE_CONTRACT
     );
-    console.log('initialised contract', tx.hash);
+    console.log('initialised contract ' + tx.hash);
     await tx.wait();
 
     // TODO delete this
     tx = await electionModule.setMinEpochDurations(1, 1, 1);
-    console.log('set min epoch durations', tx.hash);
+    console.log('set min epoch durations ' + tx.hash);
     await tx.wait();
 
     // TODO delete this
     tx = await electionModule.setMaxDateAdjustmentTolerance(MAX_UINT64);
-    console.log('set max date', tx.hash);
+    console.log('set max date ' + tx.hash);
     await tx.wait();
 
     tx = await electionModule.tweakEpochSchedule(
@@ -73,7 +73,7 @@ async function main() {
       schedule.votingStartDate,
       schedule.epochEndDate
     );
-    console.log('tweak start dates', tx.hash);
+    console.log('tweak start dates ' + tx.hash);
     await tx.wait();
 
     // TODO dont do the test network version
@@ -92,7 +92,7 @@ async function main() {
 
   if (BigInt(await electionModule.getCoreContributorToken()) !== BigInt(CC_TOKEN)) {
     tx = await electionModule.setCoreContributorToken(CC_TOKEN);
-    console.log('update core contributor token', tx.hash);
+    console.log('update core contributor token ' + tx.hash);
     await tx.wait();
   }
 
@@ -102,7 +102,7 @@ async function main() {
     BigInt(await ownerModule.nominatedOwner()) !== BigInt(OWNER)
   ) {
     tx = await ownerModule.nominateNewOwner(OWNER);
-    console.log('nominate owner', tx.hash);
+    console.log('nominate owner ' + tx.hash);
     await tx.wait();
   }
 
@@ -118,7 +118,7 @@ async function main() {
     schedule.nominationStartDate * 1000 <= Date.now()
   ) {
     tx = await electionModule.setDebtShareSnapshotId(schedule.snapshotId);
-    console.log('set snapshot id', tx.hash);
+    console.log('set snapshot id ' + tx.hash);
     await tx.wait();
   }
 

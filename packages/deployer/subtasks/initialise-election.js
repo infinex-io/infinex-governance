@@ -76,15 +76,15 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
       });
 
       tx = await contract.setMinEpochDurations(1, 1, 1);
-      logger.info('set min epoch durations', tx.hash);
+      logger.info('set min epoch durations ' + tx.hash);
       await tx.wait();
 
       tx = await contract.setMaxDateAdjustmentTolerance(MAX_UINT64);
-      logger.info('set max date', tx.hash);
+      logger.info('set max date ' + tx.hash);
       await tx.wait();
 
       tx = await contract.tweakEpochSchedule(nominationStart, votingStart, epochEnd);
-      logger.info('tweak start dates', tx.hash);
+      logger.info('tweak start dates ' + tx.hash);
       await tx.wait();
 
       return;
@@ -97,16 +97,20 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
     ](
       nftName,
       nftSymbol,
-      Array.from(Array(+totalMembers)).map(
-        (_, index) => '0x' + (index + 1).toString().padStart(40, '0')
-      ),
-      totalMembers,
+      [contract.signer.address],
+      1,
       nominationStart,
       votingStart,
       epochEnd,
       debtShareContract
     );
-    logger.info('initialised contract', tx.hash);
+    logger.info('initialised contract ' + tx.hash);
     await tx.wait();
+
+    if (+totalMembers > 1) {
+      tx = await contract.setNextEpochSeatCount();
+      logger.info('setting the next election count to be ' + totalMembers + ' ' + tx.hash);
+      await tx.wait();
+    }
   }
 );

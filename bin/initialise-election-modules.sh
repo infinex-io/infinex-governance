@@ -6,8 +6,8 @@ function initialise() {
   cd ../../
 }
 
-#initialise core-contributor-council
+initialise core-contributor-council
 initialise ecosystem-council
-#initialise trader-council
-#initialise treasury-council
+initialise trader-council
+initialise treasury-council
 

@@ -20,7 +20,7 @@ async function main() {
 
     if (debtShareSnapshotId === BigInt(0)) {
       tx = await electionModule.setDebtShareSnapshotId(await ethers.provider.getBlockNumber());
-      console.log('set snapshot id', tx.hash);
+      console.log('set snapshot id ' + tx.hash);
       await tx.wait();
       console.log('done');
     } else {

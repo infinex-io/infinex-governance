@@ -23,7 +23,7 @@ subtask(SUBTASK_INITIALISE_EXTRA, 'Initialises extra custom logic').setAction(as
 
   if (BigInt(await contract.getCoreContributorToken()) !== BigInt(CC_TOKEN)) {
     tx = await contract.setCoreContributorToken(CC_TOKEN);
-    logger.info('update core contributor token', tx.hash);
+    logger.info('update core contributor token ' + tx.hash);
     await tx.wait();
   }
 });
