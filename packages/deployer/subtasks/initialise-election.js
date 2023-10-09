@@ -108,7 +108,7 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
     await tx.wait();
 
     if (+totalMembers > 1) {
-      tx = await contract.setNextEpochSeatCount();
+      tx = await contract.setNextEpochSeatCount(totalMembers);
       logger.info('setting the next election count to be ' + totalMembers + ' ' + tx.hash);
       await tx.wait();
     }
