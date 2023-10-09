@@ -1,0 +1,44 @@
+{
+  "investorToken": {
+    "address": "0x7FAC22c10D63487f88296ECD69742bA95A1BE847",
+    "contract": "contracts/InvestorToken.sol:InvestorToken",
+    "constructorArguments": [
+      [
+        "0xBA4bB4e7102229d0f288F04BeA3eA7e61c9C2aB6",
+        "0x003adee9f572ba3b9091f2ed0400040bcb3a7244",
+        "0xccf10B8ff96579BeEFb2a75F674181E86D3c507E",
+        "0xDFdDDe062A9CE719931Dfea3B618D192F3c3aabe",
+        "0x1BE960932CbC08f29cf70349c0a0547c75A297BC"
+      ]
+    ],
+    "tx": "0x7a2c1627535645282d1522777f78c25b05112c8f94df6282527c2cfd505be2bc"
+  },
+  "investorCounting": {
+    "address": "0x14fbbC61D4634789DfC2D114C9773fAa6a2E8EdB",
+    "constructorArguments": [
+      "0x7FAC22c10D63487f88296ECD69742bA95A1BE847"
+    ],
+    "contract": "contracts/InvestorCounting.sol:InvestorCounting",
+    "tx": "0x283cacba4484d3031204fb57260119995bb792c699134da1709c40ebc4102bb8"
+  },
+  "ccToken": {
+    "address": "0x2268f5F1A9712CF7a532693830683C79A12d2CBa",
+    "contract": "contracts/CoreContributorToken.sol:CoreContributorToken",
+    "constructorArguments": [
+      [
+        "0xBA4bB4e7102229d0f288F04BeA3eA7e61c9C2aB6",
+        "0x003adee9f572ba3b9091f2ed0400040bcb3a7244",
+        "0xccf10B8ff96579BeEFb2a75F674181E86D3c507E",
+        "0xDFdDDe062A9CE719931Dfea3B618D192F3c3aabe",
+        "0x1BE960932CbC08f29cf70349c0a0547c75A297BC"
+      ]
+    ],
+    "tx": "0x9206e05ba0478562eca474933add3bf338527c179900b720a7c9c5eb7a2145bb"
+  },
+  "blankCounting": {
+    "address": "0x4deaA8617cd8051EBc502f7c5b4D014Db4445b93",
+    "contract": "contracts/BlankCounting.sol:BlankCounting",
+    "constructorArguments": [],
+    "tx": "0xed3b8d896df5094c99401f2a7a73b110063c580f236ed771e7267e76453fb686"
+  }
+}

@@ -12,14 +12,12 @@ contract CoreContributorToken is ERC721Votes, Ownable2Step {
 
     EnumerableSet.AddressSet private _members;
 
-    constructor(address owner, address[] memory initialMembers)
+    constructor(address[] memory initialMembers)
     ERC721("Infinex CC", "INXCC")
     EIP712("INFINEX", "1") {
         for (uint i = 0; i < initialMembers.length; i++) {
             mint(initialMembers[i]);
         }
-
-        _transferOwnership(owner);
     }
 
     function getMembers() external view returns (address[] memory) {

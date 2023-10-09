@@ -1,4 +1,6 @@
-const { ethers } = require('hardhat');
+const { ethers, network } = require('hardhat');
+const fs = require('fs');
+const path = require('path');
 
 async function main() {
   const investorTokenFactory = await ethers.getContractFactory('InvestorToken');
@@ -6,46 +8,64 @@ async function main() {
   const ccTokenFactory = await ethers.getContractFactory('CoreContributorToken');
   const blankCountingFactory = await ethers.getContractFactory('BlankCounting');
 
-  const INITIAL_MEMBERS = [
-    '0xBA4bB4e7102229d0f288F04BeA3eA7e61c9C2aB6',
-    '0x003adee9f572ba3b9091f2ed0400040bcb3a7244',
-    '0xccf10B8ff96579BeEFb2a75F674181E86D3c507E',
-    '0xDFdDDe062A9CE719931Dfea3B618D192F3c3aabe',
-    '0x1BE960932CbC08f29cf70349c0a0547c75A297BC',
-  ];
-  const INITIAL_INVESTORS = [
-    '0xBA4bB4e7102229d0f288F04BeA3eA7e61c9C2aB6',
-    '0x003adee9f572ba3b9091f2ed0400040bcb3a7244',
-    '0xccf10B8ff96579BeEFb2a75F674181E86D3c507E',
-    '0xDFdDDe062A9CE719931Dfea3B618D192F3c3aabe',
-    '0x1BE960932CbC08f29cf70349c0a0547c75A297BC',
-  ];
-  const INVESTOR_OWNER = '0x5c99fCB8E96601c51be8002F9E89fCE8b5f0B682'; // Treasury Safe
-  const CC_OWNER = '0xf23d8DDc368089a1D6A97bc385c2ca885cd9B2f3'; // infinex safe
+  if (!process.env.INITIAL_MEMBERS || !process.env.INITIAL_INVESTORS) {
+    throw new Error('missing initial members or investors');
+  }
 
-  const gasPrice = undefined; // (await ethers.provider.getGasPrice()).mul(2);
+  const INITIAL_MEMBERS = process.env.INITIAL_MEMBERS.split(',');
+  const INITIAL_INVESTORS = process.env.INITIAL_INVESTORS.split(',');
 
-  const ccToken = await ccTokenFactory.deploy(CC_OWNER, INITIAL_MEMBERS, { gasPrice });
+  const ccToken = await ccTokenFactory.deploy(INITIAL_MEMBERS);
   console.log('cc token', ccToken.address);
   await ccToken.deployed();
 
-  const counting = await blankCountingFactory.deploy({ gasPrice });
+  const counting = await blankCountingFactory.deploy();
   console.log('blank counting', counting.address);
   await counting.deployed();
 
-  const investorToken = await investorTokenFactory.deploy(INVESTOR_OWNER, INITIAL_INVESTORS, {
-    gasPrice,
-  });
+  const investorToken = await investorTokenFactory.deploy(INITIAL_INVESTORS);
   console.log('investor token', investorToken.address);
   await investorToken.deployed();
 
-  const investorCounting = await investorCountingFactory.deploy(investorToken.address, {
-    gasPrice,
-  });
+  const investorCounting = await investorCountingFactory.deploy(investorToken.address);
   console.log('investorCounting', investorCounting.address);
   await investorCounting.deployed();
 
   console.log('done.');
+
+  fs.writeFileSync(
+    path.join(__dirname, '../deployment.' + network.name + '.json'),
+    JSON.stringify(
+      {
+        investorToken: {
+          address: investorToken.address,
+          contract: 'contracts/InvestorToken.sol:InvestorToken',
+          constructorArguments: [INITIAL_INVESTORS],
+          tx: investorToken.deployTransaction.hash,
+        },
+        investorCounting: {
+          address: investorCounting.address,
+          constructorArguments: [investorToken.address],
+          contract: 'contracts/InvestorCounting.sol:InvestorCounting',
+          tx: investorCounting.deployTransaction.hash,
+        },
+        ccToken: {
+          address: ccToken.address,
+          contract: 'contracts/CoreContributorToken.sol:CoreContributorToken',
+          constructorArguments: [INITIAL_MEMBERS],
+          tx: ccToken.deployTransaction.hash,
+        },
+        blankCounting: {
+          address: counting.address,
+          contract: 'contracts/BlankCounting.sol:BlankCounting',
+          constructorArguments: [],
+          tx: counting.deployTransaction.hash,
+        },
+      },
+      undefined,
+      4
+    )
+  );
 }
 
 main().catch((e) => console.error(e));

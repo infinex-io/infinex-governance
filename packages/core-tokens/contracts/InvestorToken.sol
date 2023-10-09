@@ -6,14 +6,12 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol";
 
 contract InvestorToken is ERC721Votes, Ownable2Step {
 
-    constructor(address owner, address[] memory initialInvestors)
+    constructor(address[] memory initialInvestors)
     ERC721("Infinex Benefactor", "INXBF")
     EIP712("INFINEX", "1") {
         for (uint i = 0; i < initialInvestors.length; i++) {
             mint(initialInvestors[i]);
         }
-
-        _transferOwnership(owner);
     }
 
     function mint(address to) public virtual onlyOwner {
