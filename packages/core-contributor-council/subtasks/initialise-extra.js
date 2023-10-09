@@ -1,6 +1,7 @@
 const logger = require('@synthetixio/core-js/utils/io/logger');
 const { subtask } = require('hardhat/config');
 const { SUBTASK_INITIALISE_EXTRA } = require('@synthetixio/deployer/task-names');
+const prompter = require('@synthetixio/core-js/utils/io/prompter');
 
 subtask(SUBTASK_INITIALISE_EXTRA, 'Initialises extra custom logic').setAction(async (_, hre) => {
   logger.subtitle('Initialising Extra Custom Logic');
@@ -15,13 +16,13 @@ subtask(SUBTASK_INITIALISE_EXTRA, 'Initialises extra custom logic').setAction(as
 
   const contract = electionModuleFactory.attach(proxyAddress);
 
-  const { CC_TOKEN } = process.env;
+  const CC_TOKEN = require('@infinex/core-tokens/deployment.' + hre.network.name + '.json').ccToken
+    .address;
 
-  if (!CC_TOKEN) {
-    throw new Error('missing CC_TOKEN');
-  }
-
+  let tx;
   if (BigInt(await contract.getCoreContributorToken()) !== BigInt(CC_TOKEN)) {
+    await prompter.confirmAction('Set Core Contributor Token ' + CC_TOKEN);
+
     tx = await contract.setCoreContributorToken(CC_TOKEN);
     logger.info('update core contributor token ' + tx.hash);
     await tx.wait();

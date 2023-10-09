@@ -19,8 +19,6 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
     },
     hre
   ) => {
-    logger.subtitle('Initialising Election Module');
-
     if (
       !nftName ||
       !nftSymbol ||
@@ -89,6 +87,8 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
 
       return;
     }
+
+    logger.subtitle('Initialising Election Module');
 
     await prompter.confirmAction('Initialise Election Module');
 

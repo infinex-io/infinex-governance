@@ -23,7 +23,7 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
   .addOptionalParam(
     'debtShareContractName',
     'The name of the debt share contract',
-    process.env.DEBT_SHARE_CONTRACT_NAME || 'blankCounting'
+    process.env.DEBT_SHARE_CONTRACT || 'blankCounting'
   )
   .addOptionalParam('nftName', 'The name of the NFT contract', process.env.NFT_NAME)
   .addOptionalParam(
@@ -77,7 +77,7 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
     }
 
     const signer = await hre.ethers.getSigner();
-    await logger.title('DEPLOYER');
+    await logger.title('INITIALISE');
 
     await hre.run(SUBTASK_LOAD_DEPLOYMENT, taskArguments);
     await _compile(hre, quiet);
