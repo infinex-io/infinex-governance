@@ -21,6 +21,7 @@ module.exports = {
   SUBTASK_TAKE_SNAPSHOT: 'deployer-take-snapshot',
   SUBTASK_INITIALISE_OWNER: 'deployer-initialise-owner',
   SUBTASK_INITIALISE_ELECTION: 'deployer-initialise-election',
+  SUBTASK_INITIALISE_EXTRA: 'deployer-initialise-extra',
   SUBTASK_VALIDATE_INTERFACES: 'deployer-validate-interfaces',
   SUBTASK_VALIDATE_MODULES: 'deployer-validate-modules',
   SUBTASK_VALIDATE_ROUTER: 'deployer-validate-router',

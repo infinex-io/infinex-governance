@@ -22,6 +22,7 @@ subtask(SUBTASK_INITIALISE_OWNER, 'Initialises the owner of the election module'
     const contract = ownerFactory.attach(proxyAddress);
 
     const currentOwner = await contract.owner();
+    const currentNominatedOwner = await contract.nominatedOwner();
 
     let tx;
     if (BigInt(currentOwner) === BigInt(0)) {
@@ -32,12 +33,15 @@ subtask(SUBTASK_INITIALISE_OWNER, 'Initialises the owner of the election module'
       logger.info('claiming ownership', tx.hash);
 
       await tx.wait();
-    } else if (BigInt(currentOwner) !== BigInt(owner)) {
-      await prompter.confirmAction('Nominate Owner ' + owner);
+    } else if (
+      BigInt(currentOwner) !== BigInt(owner) &&
+      BigInt(currentNominatedOwner) !== BigInt(owner)
+    ) {
+      await prompter.confirmAction('Nominate New Owner ' + owner);
 
-      const signer = hre.ethers.getSigner(owner);
+      const signer = await hre.ethers.getSigner(currentOwner);
 
-      tx = await contract.connect(signer).nominateOwner(owner);
+      tx = await contract.connect(signer).nominateNewOwner(owner);
 
       logger.info('nominating new owner', tx.hash);
 

@@ -6,6 +6,8 @@ const {
   SUBTASK_INITIALISE_OWNER,
   SUBTASK_INITIALISE_ELECTION,
   TASK_INITIALISE,
+  SUBTASK_GET_DEBT_SHARE_CONTRACT,
+  SUBTASK_INITIALISE_EXTRA,
 } = require('../task-names');
 
 const logger = require('@synthetixio/core-js/utils/io/logger');
@@ -19,13 +21,48 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
   .addFlag('quiet', 'Silence all output', false)
   .addOptionalParam('owner', 'The designated owner of the contract', process.env.ELECTION_OWNER)
   .addOptionalParam(
+    'debtShareContractName',
+    'The name of the debt share contract',
+    process.env.DEBT_SHARE_CONTRACT_NAME || 'debtShareContractName'
+  )
+  .addOptionalParam('nftName', 'The name of the NFT contract', process.env.NFT_NAME)
+  .addOptionalParam(
+    'totalMembers',
+    'How many members will be in the council',
+    process.env.TOTAL_MEMBERS
+  )
+  .addOptionalParam('nftSymbol', 'The name of the NFT contract', process.env.NFT_SYMBOL)
+  .addOptionalParam(
+    'nominationStartDate',
+    'The when the nominations begin',
+    process.env.NOMINATION_START_DATE
+  )
+  .addOptionalParam(
+    'nominationDays',
+    'The nomination duration in days',
+    process.env.NOMINATION_DAYS
+  )
+  .addOptionalParam('votingDays', 'The voting duration in days', process.env.VOTING_DAYS)
+  .addOptionalParam(
     'instance',
     'The name of the target instance for deployment',
     'official',
     types.alphanumeric
   )
   .setAction(async (taskArguments, hre) => {
-    const { debug, quiet, noConfirm, owner } = taskArguments;
+    const {
+      debug,
+      quiet,
+      noConfirm,
+      owner,
+      nftName,
+      nftSymbol,
+      nominationStartDate,
+      nominationDays,
+      votingDays,
+      totalMembers,
+      debtShareContractName,
+    } = taskArguments;
 
     logger.quiet = quiet;
     logger.debugging = debug;
@@ -45,8 +82,21 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
     await hre.run(SUBTASK_LOAD_DEPLOYMENT, taskArguments);
     await _compile(hre, quiet);
 
+    const DEBT_CONTRACT = await hre.run(SUBTASK_GET_DEBT_SHARE_CONTRACT, {
+      name: debtShareContractName,
+    });
+
     await hre.run(SUBTASK_INITIALISE_OWNER, { owner: signer.address });
-    await hre.run(SUBTASK_INITIALISE_ELECTION, { owner: signer.address });
+    await hre.run(SUBTASK_INITIALISE_ELECTION, {
+      nftName,
+      nftSymbol,
+      nominationStartDate,
+      nominationDays,
+      votingDays,
+      totalMembers,
+      debtShareContract: DEBT_CONTRACT,
+    });
+    await hre.run(SUBTASK_INITIALISE_EXTRA);
     await hre.run(SUBTASK_INITIALISE_OWNER, { owner });
   });
 

@@ -21,6 +21,18 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
   ) => {
     logger.subtitle('Initialising Election Module');
 
+    if (
+      !nftName ||
+      !nftSymbol ||
+      !nominationStartDate ||
+      !nominationDays ||
+      !votingDays ||
+      !totalMembers ||
+      !debtShareContract
+    ) {
+      throw new Error('missing initialisation values');
+    }
+
     const contracts = Object.values(hre.deployer.deployment.general.contracts);
     const proxyData = contracts.find((data) => data.isProxy);
     const proxyAddress = proxyData.deployedAddress;
@@ -49,8 +61,8 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
     const epochEnd = daysToSeconds(+votingDays) + votingStart;
 
     if (
-      daysToSeconds(votingDays) <= minVotingDuration ||
-      daysToSeconds(nominationDays) <= minNominationDuration ||
+      daysToSeconds(+votingDays) <= minVotingDuration ||
+      daysToSeconds(+nominationDays) <= minNominationDuration ||
       epochEnd - Math.round(Date.now() / 1000) <= minEpochDuration
     ) {
       await hre.run(SUBTASK_INITIALISE_ELECTION, {
@@ -74,6 +86,8 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
       tx = await contract.tweakEpochSchedule(nominationStart, votingStart, epochEnd);
       logger.info('tweak start dates', tx.hash);
       await tx.wait();
+
+      return;
     }
 
     await prompter.confirmAction('Initialise Election Module');
@@ -83,7 +97,7 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
     ](
       nftName,
       nftSymbol,
-      Array.from(Array(totalMembers)).map(
+      Array.from(Array(+totalMembers)).map(
         (_, index) => '0x' + (index + 1).toString().padStart(40, '0')
       ),
       totalMembers,
