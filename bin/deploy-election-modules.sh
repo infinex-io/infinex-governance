@@ -2,9 +2,10 @@
 
 function deployAndVerify() {
   cd "packages/$1"
-  npx hardhat deploy --noConfirm --debug --network $NETWORK
+  print $(pwd)
+  npx hardhat deploy --no-confirm --clear --network $NETWORK
   npx hardhat deploy:verify --network $NETWORK
-  cd ..
+  cd ../../
 }
 
 deployAndVerify core-contributor-council

@@ -31,14 +31,14 @@ subtask(
     }
 
     if (debtShareSnapshotId === BigInt(0)) {
-      tx = await electionModule.setDebtShareSnapshotId(await ethers.provider.getBlockNumber());
-      logger.debug('set snapshot id', tx.hash);
+      tx = await electionModule.setDebtShareSnapshotId(await hre.ethers.provider.getBlockNumber());
+      logger.info('set snapshot id', tx.hash);
       await tx.wait();
-      logger.debug('done');
+      logger.info('done');
     } else {
-      logger.debug('snapshot already staken');
+      logger.info('snapshot already staken');
     }
   } else {
-    logger.debug('invalid time period');
+    logger.info('invalid time period');
   }
 });

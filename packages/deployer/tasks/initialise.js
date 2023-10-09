@@ -25,7 +25,7 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
     types.alphanumeric
   )
   .setAction(async (taskArguments, hre) => {
-    const { debug, quiet, noConfirm } = taskArguments;
+    const { debug, quiet, noConfirm, owner } = taskArguments;
 
     logger.quiet = quiet;
     logger.debugging = debug;
@@ -47,7 +47,7 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
 
     await hre.run(SUBTASK_INITIALISE_OWNER, { owner: signer.address });
     await hre.run(SUBTASK_INITIALISE_ELECTION, { owner: signer.address });
-    await hre.run(SUBTASK_INITIALISE_OWNER, { owner: signer.address });
+    await hre.run(SUBTASK_INITIALISE_OWNER, { owner });
   });
 
 /*

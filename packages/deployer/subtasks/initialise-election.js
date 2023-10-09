@@ -41,7 +41,9 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
 
     if (BigInt(await contract.getCouncilToken()) !== BigInt(0)) {
       logger.info('already initialised');
+      return;
     }
+
     const nominationStart = isoToSeconds(nominationStartDate);
     const votingStart = daysToSeconds(+nominationDays) + nominationStart;
     const epochEnd = daysToSeconds(+votingDays) + votingStart;
@@ -62,15 +64,15 @@ subtask(SUBTASK_INITIALISE_ELECTION, 'Initialises the election module').setActio
       });
 
       tx = await contract.setMinEpochDurations(1, 1, 1);
-      logger.debug('set min epoch durations', tx.hash);
+      logger.info('set min epoch durations', tx.hash);
       await tx.wait();
 
       tx = await contract.setMaxDateAdjustmentTolerance(MAX_UINT64);
-      logger.debug('set max date', tx.hash);
+      logger.info('set max date', tx.hash);
       await tx.wait();
 
       tx = await contract.tweakEpochSchedule(nominationStart, votingStart, epochEnd);
-      logger.debug('tweak start dates', tx.hash);
+      logger.info('tweak start dates', tx.hash);
       await tx.wait();
     }
 

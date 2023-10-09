@@ -29,7 +29,7 @@ subtask(SUBTASK_INITIALISE_OWNER, 'Initialises the owner of the election module'
 
       tx = await contract.initializeOwnerModule(owner);
 
-      logger.debug('claiming ownership', tx.hash);
+      logger.info('claiming ownership', tx.hash);
 
       await tx.wait();
     } else if (BigInt(currentOwner) !== BigInt(owner)) {
@@ -39,7 +39,7 @@ subtask(SUBTASK_INITIALISE_OWNER, 'Initialises the owner of the election module'
 
       tx = await contract.connect(signer).nominateOwner(owner);
 
-      logger.debug('nominating new owner', tx.hash);
+      logger.info('nominating new owner', tx.hash);
 
       await tx.wait();
     } else {
