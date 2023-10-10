@@ -1,10 +1,12 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "@synthetixio/synthetix-governance/contracts/interfaces/IDebtShare.sol";
+
 import "@openzeppelin/contracts/access/Ownable2Step.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol";
 
-contract InvestorToken is ERC721Votes, Ownable2Step {
+contract InvestorToken is ERC721Votes, Ownable2Step, IDebtShare {
 
     constructor(address[] memory initialInvestors)
     ERC721("Infinex Benefactor", "INXBF")
@@ -12,6 +14,10 @@ contract InvestorToken is ERC721Votes, Ownable2Step {
         for (uint i = 0; i < initialInvestors.length; i++) {
             mint(initialInvestors[i]);
         }
+    }
+
+    function balanceOfOnPeriod(address account, uint timepoint) external override view returns (uint) {
+        return getPastVotes(account, timepoint);
     }
 
     function mint(address to) public virtual onlyOwner {

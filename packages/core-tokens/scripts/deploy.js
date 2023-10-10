@@ -4,7 +4,6 @@ const path = require('path');
 
 async function main() {
   const investorTokenFactory = await ethers.getContractFactory('InvestorToken');
-  const investorCountingFactory = await ethers.getContractFactory('InvestorCounting');
   const ccTokenFactory = await ethers.getContractFactory('CoreContributorToken');
   const blankCountingFactory = await ethers.getContractFactory('BlankCounting');
 
@@ -42,12 +41,6 @@ async function main() {
           contract: 'contracts/InvestorToken.sol:InvestorToken',
           constructorArguments: [INITIAL_INVESTORS],
           tx: investorToken.deployTransaction.hash,
-        },
-        investorCounting: {
-          address: investorCounting.address,
-          constructorArguments: [investorToken.address],
-          contract: 'contracts/InvestorCounting.sol:InvestorCounting',
-          tx: investorCounting.deployTransaction.hash,
         },
         ccToken: {
           address: ccToken.address,

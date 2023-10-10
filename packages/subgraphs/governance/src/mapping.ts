@@ -1,8 +1,8 @@
 import { store, BigInt } from "@graphprotocol/graph-ts";
 import {
   VoteRecorded,
-  VoteWithdrawn,
-} from "../generated/Spartan/ElectionModule";
+  VoteWithdrawn
+} from "../generated/CoreContributor/ElectionModule";
 import { Vote, VoteResult } from "../generated/schema";
 import { ONE_BI, ZERO_BI } from "./helpers";
 
