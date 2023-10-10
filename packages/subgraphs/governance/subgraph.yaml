@@ -5,15 +5,15 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Spartan
+    name: CoreContributor
     network: optimism
     source:
       abi: ElectionModule
-      address: "0xE832C302D1160EAe57045eb9d9Ea14daBd2E229c"
+      address: "0x56c41dbC0643942560A33c7400872dA80F9c0a76"
       startBlock: 9313622
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Vote
@@ -27,15 +27,15 @@ dataSources:
           handler: handleVoteWithdrawn
       file: ./src/mapping.ts
   - kind: ethereum/contract
-    name: Ambassador
+    name: Ecosystem
     network: optimism
     source:
       abi: ElectionModule
-      address: "0x37fAc8c146889333734015B0C942b620aCfeeff8"
+      address: "0xFb89c352B126b1749dCA2eB70a024ef4fD0F3abE"
       startBlock: 9312941
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Vote
@@ -49,15 +49,15 @@ dataSources:
           handler: handleVoteWithdrawn
       file: ./src/mapping.ts
   - kind: ethereum/contract
-    name: Grants
+    name: Trader
     network: optimism
     source:
       abi: ElectionModule
-      address: "0x6891FfAA59c0Ce04b4E3C6eaa50CFc5E2fc77b77"
+      address: "0x7d9eB95a51514a626330ef809554acf732681737"
       startBlock: 9313417
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Vote
@@ -75,11 +75,11 @@ dataSources:
     network: optimism
     source:
       abi: ElectionModule
-      address: "0x6cC6050bE3214D14DB46188e5df59bDEAE97a42a"
+      address: "0x32694E6e8223e907FFc4557b08E2fB410cB5D77e"
       startBlock: 9313799
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Vote
