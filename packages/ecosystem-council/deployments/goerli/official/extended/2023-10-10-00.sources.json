@@ -80416,7 +80416,7 @@
     }
   },
   "contracts/modules/UpgradeModule.sol": {
-    "sourceCode": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport {UpgradeModule as BaseUpgradeModule} from \"@synthetixio/core-modules/contracts/modules/UpgradeModule.sol\";\n\n// solhint-disable-next-line no-empty-blocks\ncontract UpgradeModule is BaseUpgradeModule {\n\n}\n",
+    "sourceCode": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport {UpgradeModule as BaseUpgradeModule} from \"@synthetixio/core-modules/contracts/modules/UpgradeModule.sol\";\n\n// solhint-disable-next-line no-empty-blocks\ncontract UpgradeModule is BaseUpgradeModule {\n    error NonUpgradeable();\n\n    function _upgradeTo(address) internal virtual override {\n        revert NonUpgradeable();\n    }\n}\n",
     "ast": {
       "absolutePath": "contracts/modules/UpgradeModule.sol",
       "exportedSymbols": {
@@ -80424,10 +80424,10 @@
           4200
         ],
         "UpgradeModule": [
-          6874
+          6886
         ]
       },
-      "id": 6875,
+      "id": 6887,
       "license": "MIT",
       "nodeType": "SourceUnit",
       "nodes": [
@@ -80448,7 +80448,7 @@
           "id": 6871,
           "nameLocation": "-1:-1:-1",
           "nodeType": "ImportDirective",
-          "scope": 6875,
+          "scope": 6887,
           "sourceUnit": 4201,
           "src": "56:113:48",
           "symbolAliases": [
@@ -80487,9 +80487,9 @@
           "contractDependencies": [],
           "contractKind": "contract",
           "fullyImplemented": true,
-          "id": 6874,
+          "id": 6886,
           "linearizedBaseContracts": [
-            6874,
+            6886,
             4200,
             476,
             494,
@@ -80500,20 +80500,138 @@
           "name": "UpgradeModule",
           "nameLocation": "225:13:48",
           "nodeType": "ContractDefinition",
-          "nodes": [],
-          "scope": 6875,
-          "src": "216:48:48",
+          "nodes": [
+            {
+              "id": 6875,
+              "name": "NonUpgradeable",
+              "nameLocation": "272:14:48",
+              "nodeType": "ErrorDefinition",
+              "parameters": {
+                "id": 6874,
+                "nodeType": "ParameterList",
+                "parameters": [],
+                "src": "286:2:48"
+              },
+              "src": "266:23:48"
+            },
+            {
+              "baseFunctions": [
+                635
+              ],
+              "body": {
+                "id": 6884,
+                "nodeType": "Block",
+                "src": "350:40:48",
+                "statements": [
+                  {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 6881,
+                        "name": "NonUpgradeable",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 6875,
+                        "src": "367:14:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 6882,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "367:16:48",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 6883,
+                    "nodeType": "RevertStatement",
+                    "src": "360:23:48"
+                  }
+                ]
+              },
+              "id": 6885,
+              "implemented": true,
+              "kind": "function",
+              "modifiers": [],
+              "name": "_upgradeTo",
+              "nameLocation": "304:10:48",
+              "nodeType": "FunctionDefinition",
+              "overrides": {
+                "id": 6879,
+                "nodeType": "OverrideSpecifier",
+                "overrides": [],
+                "src": "341:8:48"
+              },
+              "parameters": {
+                "id": 6878,
+                "nodeType": "ParameterList",
+                "parameters": [
+                  {
+                    "constant": false,
+                    "id": 6877,
+                    "mutability": "mutable",
+                    "name": "",
+                    "nameLocation": "-1:-1:-1",
+                    "nodeType": "VariableDeclaration",
+                    "scope": 6885,
+                    "src": "315:7:48",
+                    "stateVariable": false,
+                    "storageLocation": "default",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "typeName": {
+                      "id": 6876,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "315:7:48",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "visibility": "internal"
+                  }
+                ],
+                "src": "314:9:48"
+              },
+              "returnParameters": {
+                "id": 6880,
+                "nodeType": "ParameterList",
+                "parameters": [],
+                "src": "350:0:48"
+              },
+              "scope": 6886,
+              "src": "295:95:48",
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "internal"
+            }
+          ],
+          "scope": 6887,
+          "src": "216:176:48",
           "usedErrors": [
             5,
-            10,
-            14,
-            24,
             561,
-            563
+            563,
+            6875
           ]
         }
       ],
-      "src": "31:234:48"
+      "src": "31:362:48"
     }
   },
   "contracts/modules/OwnerModule.sol": {
@@ -89126,7 +89244,7 @@
     }
   },
   "contracts/Router.sol": {
-    "sourceCode": "//SPDX-License-Identifier: Unlicense\npragma solidity ^0.8.0;\n\n// --------------------------------------------------------------------------------\n// --------------------------------------------------------------------------------\n// GENERATED CODE - do not edit manually!!\n// --------------------------------------------------------------------------------\n// --------------------------------------------------------------------------------\n\ncontract Router {\n    error UnknownSelector(bytes4 sel);\n\n    address private constant _ELECTION_INSPECTOR_MODULE = 0xcDA26F2fDA941b9A8Da95478D3bfAd21298A770D;\n    address private constant _ELECTION_MODULE = 0xe59FfBE9eCFE565A58DeAdEb4C5e93AAa33Ed778;\n    address private constant _OWNER_MODULE = 0x5A78550c182547aa154C20aDf4C145691A349178;\n    address private constant _UPGRADE_MODULE = 0x60F00c9d9b1486990536c7c11a7c8AA952516cB2;\n\n    fallback() external payable {\n        _forward();\n    }\n\n    receive() external payable {\n        _forward();\n    }\n\n    function _forward() internal {\n        // Lookup table: Function selector => implementation contract\n        bytes4 sig4 = msg.sig;\n        address implementation;\n\n        assembly {\n            let sig32 := shr(224, sig4)\n\n            function findImplementation(sig) -> result {\n                if lt(sig,0x8625c053) {\n                    if lt(sig,0x447068ef) {\n                        if lt(sig,0x2810e1d6) {\n                            if lt(sig,0x0ebf4796) {\n                                switch sig\n                                case 0x0166451a { result := _ELECTION_MODULE } // ElectionModule.initializeElectionModule()\n                                case 0x0438d06e { result := _ELECTION_MODULE } // ElectionModule.setMinimumActiveMembers()\n                                case 0x086146d2 { result := _ELECTION_MODULE } // ElectionModule.getCurrentPeriod()\n                                case 0x09eef43e { result := _ELECTION_MODULE } // ElectionModule.hasVoted()\n                                case 0x0a8b471a { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getBallotCandidatesInEpoch()\n                                leave\n                            }\n                            switch sig\n                            case 0x0ebf4796 { result := _ELECTION_MODULE } // ElectionModule.setDebtShareContract()\n                            case 0x0f98dfba { result := _ELECTION_MODULE } // ElectionModule.getDefaultBallotEvaluationBatchSize()\n                            case 0x1209644e { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.hasVotedInEpoch()\n                            case 0x1627540c { result := _OWNER_MODULE } // OwnerModule.nominateNewOwner()\n                            case 0x205569c2 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.wasNominated()\n                            leave\n                        }\n                        switch sig\n                        case 0x2810e1d6 { result := _ELECTION_MODULE } // ElectionModule.resolve()\n                        case 0x2c3c5ba3 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getBallotVotesInEpoch()\n                        case 0x33f3f3de { result := _ELECTION_MODULE } // ElectionModule.setCrossChainDebtShareMerkleRoot()\n                        case 0x35eb2824 { result := _OWNER_MODULE } // OwnerModule.isOwnerModuleInitialized()\n                        case 0x362c906d { result := _ELECTION_MODULE } // ElectionModule.getEpochEndDate()\n                        case 0x3659cfe6 { result := _UPGRADE_MODULE } // UpgradeModule.upgradeTo()\n                        case 0x37143233 { result := _ELECTION_MODULE } // ElectionModule.evaluate()\n                        case 0x3a3e6c81 { result := _ELECTION_MODULE } // ElectionModule.isNominated()\n                        case 0x3ac1c5fe { result := _ELECTION_MODULE } // ElectionModule.setMaxDateAdjustmentTolerance()\n                        leave\n                    }\n                    if lt(sig,0x718fe928) {\n                        if lt(sig,0x606a6b76) {\n                            switch sig\n                            case 0x447068ef { result := _ELECTION_MODULE } // ElectionModule.getNextEpochSeatCount()\n                            case 0x49aed35c { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getBallotVotedAtEpoch()\n                            case 0x4b5dacac { result := _ELECTION_MODULE } // ElectionModule.setNextEpochSeatCount()\n                            case 0x53a47bb7 { result := _OWNER_MODULE } // OwnerModule.nominatedOwner()\n                            case 0x54520478 { result := _ELECTION_MODULE } // ElectionModule.upgradeCouncilToken()\n                            leave\n                        }\n                        switch sig\n                        case 0x606a6b76 { result := _ELECTION_MODULE } // ElectionModule.getCouncilMembers()\n                        case 0x624bd96d { result := _OWNER_MODULE } // OwnerModule.initializeOwnerModule()\n                        case 0x64deab73 { result := _ELECTION_MODULE } // ElectionModule.setDefaultBallotEvaluationBatchSize()\n                        case 0x655aaaca { result := _ELECTION_MODULE } // ElectionModule.getBallotCandidates()\n                        case 0x714d8d0e { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getEpochStartDateForIndex()\n                        leave\n                    }\n                    switch sig\n                    case 0x718fe928 { result := _OWNER_MODULE } // OwnerModule.renounceNomination()\n                    case 0x793b9a9d { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getCandidateVotesInEpoch()\n                    case 0x796c5c80 { result := _ELECTION_MODULE } // ElectionModule.getDeclaredCrossChainDebtShare()\n                    case 0x79ba5097 { result := _OWNER_MODULE } // OwnerModule.acceptOwnership()\n                    case 0x7a3bc0ee { result := _ELECTION_MODULE } // ElectionModule.getBallotVotes()\n                    case 0x7d264ccb { result := _ELECTION_MODULE } // ElectionModule.declareCrossChainDebtShare()\n                    case 0x82e28473 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getVotingPeriodStartDateForIndex()\n                    case 0x84ae670c { result := _ELECTION_MODULE } // ElectionModule.cast()\n                    case 0x85160425 { result := _ELECTION_MODULE } // ElectionModule.getMinimumActiveMembers()\n                    leave\n                }\n                if lt(sig,0xca80a2ed) {\n                    if lt(sig,0xaeff252a) {\n                        if lt(sig,0x9a25eaf3) {\n                            switch sig\n                            case 0x8625c053 { result := _ELECTION_MODULE } // ElectionModule.getMinEpochDurations()\n                            case 0x8da5cb5b { result := _OWNER_MODULE } // OwnerModule.owner()\n                            case 0x8f701997 { result := _ELECTION_MODULE } // ElectionModule.tweakEpochSchedule()\n                            case 0x95ff6584 { result := _ELECTION_MODULE } // ElectionModule.getBallotVoted()\n                            case 0x9636f67c { result := _ELECTION_MODULE } // ElectionModule.getNominees()\n                            leave\n                        }\n                        switch sig\n                        case 0x9a25eaf3 { result := _ELECTION_MODULE } // ElectionModule.dismissMembers()\n                        case 0x9a9a8e1a { result := _ELECTION_MODULE } // ElectionModule.declareAndCast()\n                        case 0xa0f42837 { result := _ELECTION_MODULE } // ElectionModule.setDebtShareSnapshotId()\n                        case 0xa25a9f3a { result := _ELECTION_MODULE } // ElectionModule.setMinEpochDurations()\n                        case 0xaaf10f42 { result := _UPGRADE_MODULE } // UpgradeModule.getImplementation()\n                        leave\n                    }\n                    switch sig\n                    case 0xaeff252a { result := _ELECTION_MODULE } // ElectionModule.getDebtShareContract()\n                    case 0xb55c43d2 { result := _ELECTION_MODULE } // ElectionModule.getCrossChainDebtShareMerkleRoot()\n                    case 0xb749be55 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getNominationPeriodStartDateForIndex()\n                    case 0xba9a5b25 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getEpochEndDateForIndex()\n                    case 0xbb9c0920 { result := _ELECTION_MODULE } // ElectionModule.getVotePower()\n                    case 0xc07de0d3 { result := _ELECTION_MODULE } // ElectionModule.getCouncilToken()\n                    case 0xc14d0528 { result := _ELECTION_MODULE } // ElectionModule.modifyEpochSchedule()\n                    case 0xc5798523 { result := _ELECTION_MODULE } // ElectionModule.isElectionModuleInitialized()\n                    case 0xc7f62cda { result := _UPGRADE_MODULE } // UpgradeModule.simulateUpgradeTo()\n                    leave\n                }\n                if lt(sig,0xe327b585) {\n                    switch sig\n                    case 0xca80a2ed { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getNomineesAtEpoch()\n                    case 0xcce32c52 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getElectionWinnersInEpoch()\n                    case 0xce04e44c { result := _ELECTION_MODULE } // ElectionModule.getEpochStartDate()\n                    case 0xd11801cf { result := _ELECTION_MODULE } // ElectionModule.withdrawNomination()\n                    case 0xd82f25f0 { result := _ELECTION_MODULE } // ElectionModule.getCandidateVotes()\n                    case 0xd83eb231 { result := _ELECTION_MODULE } // ElectionModule.withdrawVote()\n                    case 0xd9617851 { result := _ELECTION_MODULE } // ElectionModule.getCrossChainDebtShareMerkleRootBlockNumber()\n                    case 0xdfe7cd3a { result := _ELECTION_MODULE } // ElectionModule.getDebtShareSnapshotId()\n                    case 0xe1509015 { result := _ELECTION_MODULE } // ElectionModule.getVotingPeriodStartDate()\n                    leave\n                }\n                switch sig\n                case 0xe327b585 { result := _ELECTION_MODULE } // ElectionModule.isElectionEvaluated()\n                case 0xe420d7f9 { result := _ELECTION_MODULE } // ElectionModule.getNominationPeriodStartDate()\n                case 0xedc968ba { result := _ELECTION_MODULE } // ElectionModule.calculateBallotId()\n                case 0xee695137 { result := _ELECTION_MODULE } // ElectionModule.initializeElectionModule()\n                case 0xf2516dbf { result := _ELECTION_MODULE } // ElectionModule.getElectionWinners()\n                case 0xf2e56dea { result := _ELECTION_MODULE } // ElectionModule.getDebtShare()\n                case 0xfcd7e1d7 { result := _ELECTION_MODULE } // ElectionModule.nominate()\n                case 0xffe7f643 { result := _ELECTION_MODULE } // ElectionModule.getEpochIndex()\n                case 0xfff17b8e { result := _ELECTION_MODULE } // ElectionModule.getMaxDateAdjustmenTolerance()\n                leave\n            }\n\n            implementation := findImplementation(sig32)\n        }\n\n        if (implementation == address(0)) {\n            revert UnknownSelector(sig4);\n        }\n\n        // Delegatecall to the implementation contract\n        assembly {\n            calldatacopy(0, 0, calldatasize())\n\n            let result := delegatecall(gas(), implementation, 0, calldatasize(), 0, 0)\n            returndatacopy(0, 0, returndatasize())\n\n            switch result\n            case 0 {\n                revert(0, returndatasize())\n            }\n            default {\n                return(0, returndatasize())\n            }\n        }\n    }\n}\n",
+    "sourceCode": "//SPDX-License-Identifier: Unlicense\npragma solidity ^0.8.0;\n\n// --------------------------------------------------------------------------------\n// --------------------------------------------------------------------------------\n// GENERATED CODE - do not edit manually!!\n// --------------------------------------------------------------------------------\n// --------------------------------------------------------------------------------\n\ncontract Router {\n    error UnknownSelector(bytes4 sel);\n\n    address private constant _ELECTION_INSPECTOR_MODULE = 0x622Eb2bBE2202a3Aa9F150CE2C386529BF185E94;\n    address private constant _ELECTION_MODULE = 0x33048885e67Ce2BF0623D4A3F84d6E3Ca0F88EE0;\n    address private constant _OWNER_MODULE = 0x686Ab53ea993B3358e7B9974768D4abE6D770256;\n    address private constant _UPGRADE_MODULE = 0x97CEb22A788e11416E6d3C843313e4Ba5be3FDb0;\n\n    fallback() external payable {\n        _forward();\n    }\n\n    receive() external payable {\n        _forward();\n    }\n\n    function _forward() internal {\n        // Lookup table: Function selector => implementation contract\n        bytes4 sig4 = msg.sig;\n        address implementation;\n\n        assembly {\n            let sig32 := shr(224, sig4)\n\n            function findImplementation(sig) -> result {\n                if lt(sig,0x8625c053) {\n                    if lt(sig,0x447068ef) {\n                        if lt(sig,0x2810e1d6) {\n                            if lt(sig,0x0ebf4796) {\n                                switch sig\n                                case 0x0166451a { result := _ELECTION_MODULE } // ElectionModule.initializeElectionModule()\n                                case 0x0438d06e { result := _ELECTION_MODULE } // ElectionModule.setMinimumActiveMembers()\n                                case 0x086146d2 { result := _ELECTION_MODULE } // ElectionModule.getCurrentPeriod()\n                                case 0x09eef43e { result := _ELECTION_MODULE } // ElectionModule.hasVoted()\n                                case 0x0a8b471a { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getBallotCandidatesInEpoch()\n                                leave\n                            }\n                            switch sig\n                            case 0x0ebf4796 { result := _ELECTION_MODULE } // ElectionModule.setDebtShareContract()\n                            case 0x0f98dfba { result := _ELECTION_MODULE } // ElectionModule.getDefaultBallotEvaluationBatchSize()\n                            case 0x1209644e { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.hasVotedInEpoch()\n                            case 0x1627540c { result := _OWNER_MODULE } // OwnerModule.nominateNewOwner()\n                            case 0x205569c2 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.wasNominated()\n                            leave\n                        }\n                        switch sig\n                        case 0x2810e1d6 { result := _ELECTION_MODULE } // ElectionModule.resolve()\n                        case 0x2c3c5ba3 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getBallotVotesInEpoch()\n                        case 0x33f3f3de { result := _ELECTION_MODULE } // ElectionModule.setCrossChainDebtShareMerkleRoot()\n                        case 0x35eb2824 { result := _OWNER_MODULE } // OwnerModule.isOwnerModuleInitialized()\n                        case 0x362c906d { result := _ELECTION_MODULE } // ElectionModule.getEpochEndDate()\n                        case 0x3659cfe6 { result := _UPGRADE_MODULE } // UpgradeModule.upgradeTo()\n                        case 0x37143233 { result := _ELECTION_MODULE } // ElectionModule.evaluate()\n                        case 0x3a3e6c81 { result := _ELECTION_MODULE } // ElectionModule.isNominated()\n                        case 0x3ac1c5fe { result := _ELECTION_MODULE } // ElectionModule.setMaxDateAdjustmentTolerance()\n                        leave\n                    }\n                    if lt(sig,0x718fe928) {\n                        if lt(sig,0x606a6b76) {\n                            switch sig\n                            case 0x447068ef { result := _ELECTION_MODULE } // ElectionModule.getNextEpochSeatCount()\n                            case 0x49aed35c { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getBallotVotedAtEpoch()\n                            case 0x4b5dacac { result := _ELECTION_MODULE } // ElectionModule.setNextEpochSeatCount()\n                            case 0x53a47bb7 { result := _OWNER_MODULE } // OwnerModule.nominatedOwner()\n                            case 0x54520478 { result := _ELECTION_MODULE } // ElectionModule.upgradeCouncilToken()\n                            leave\n                        }\n                        switch sig\n                        case 0x606a6b76 { result := _ELECTION_MODULE } // ElectionModule.getCouncilMembers()\n                        case 0x624bd96d { result := _OWNER_MODULE } // OwnerModule.initializeOwnerModule()\n                        case 0x64deab73 { result := _ELECTION_MODULE } // ElectionModule.setDefaultBallotEvaluationBatchSize()\n                        case 0x655aaaca { result := _ELECTION_MODULE } // ElectionModule.getBallotCandidates()\n                        case 0x714d8d0e { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getEpochStartDateForIndex()\n                        leave\n                    }\n                    switch sig\n                    case 0x718fe928 { result := _OWNER_MODULE } // OwnerModule.renounceNomination()\n                    case 0x793b9a9d { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getCandidateVotesInEpoch()\n                    case 0x796c5c80 { result := _ELECTION_MODULE } // ElectionModule.getDeclaredCrossChainDebtShare()\n                    case 0x79ba5097 { result := _OWNER_MODULE } // OwnerModule.acceptOwnership()\n                    case 0x7a3bc0ee { result := _ELECTION_MODULE } // ElectionModule.getBallotVotes()\n                    case 0x7d264ccb { result := _ELECTION_MODULE } // ElectionModule.declareCrossChainDebtShare()\n                    case 0x82e28473 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getVotingPeriodStartDateForIndex()\n                    case 0x84ae670c { result := _ELECTION_MODULE } // ElectionModule.cast()\n                    case 0x85160425 { result := _ELECTION_MODULE } // ElectionModule.getMinimumActiveMembers()\n                    leave\n                }\n                if lt(sig,0xca80a2ed) {\n                    if lt(sig,0xaeff252a) {\n                        if lt(sig,0x9a25eaf3) {\n                            switch sig\n                            case 0x8625c053 { result := _ELECTION_MODULE } // ElectionModule.getMinEpochDurations()\n                            case 0x8da5cb5b { result := _OWNER_MODULE } // OwnerModule.owner()\n                            case 0x8f701997 { result := _ELECTION_MODULE } // ElectionModule.tweakEpochSchedule()\n                            case 0x95ff6584 { result := _ELECTION_MODULE } // ElectionModule.getBallotVoted()\n                            case 0x9636f67c { result := _ELECTION_MODULE } // ElectionModule.getNominees()\n                            leave\n                        }\n                        switch sig\n                        case 0x9a25eaf3 { result := _ELECTION_MODULE } // ElectionModule.dismissMembers()\n                        case 0x9a9a8e1a { result := _ELECTION_MODULE } // ElectionModule.declareAndCast()\n                        case 0xa0f42837 { result := _ELECTION_MODULE } // ElectionModule.setDebtShareSnapshotId()\n                        case 0xa25a9f3a { result := _ELECTION_MODULE } // ElectionModule.setMinEpochDurations()\n                        case 0xaaf10f42 { result := _UPGRADE_MODULE } // UpgradeModule.getImplementation()\n                        leave\n                    }\n                    switch sig\n                    case 0xaeff252a { result := _ELECTION_MODULE } // ElectionModule.getDebtShareContract()\n                    case 0xb55c43d2 { result := _ELECTION_MODULE } // ElectionModule.getCrossChainDebtShareMerkleRoot()\n                    case 0xb749be55 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getNominationPeriodStartDateForIndex()\n                    case 0xba9a5b25 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getEpochEndDateForIndex()\n                    case 0xbb9c0920 { result := _ELECTION_MODULE } // ElectionModule.getVotePower()\n                    case 0xc07de0d3 { result := _ELECTION_MODULE } // ElectionModule.getCouncilToken()\n                    case 0xc14d0528 { result := _ELECTION_MODULE } // ElectionModule.modifyEpochSchedule()\n                    case 0xc5798523 { result := _ELECTION_MODULE } // ElectionModule.isElectionModuleInitialized()\n                    case 0xc7f62cda { result := _UPGRADE_MODULE } // UpgradeModule.simulateUpgradeTo()\n                    leave\n                }\n                if lt(sig,0xe327b585) {\n                    switch sig\n                    case 0xca80a2ed { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getNomineesAtEpoch()\n                    case 0xcce32c52 { result := _ELECTION_INSPECTOR_MODULE } // ElectionInspectorModule.getElectionWinnersInEpoch()\n                    case 0xce04e44c { result := _ELECTION_MODULE } // ElectionModule.getEpochStartDate()\n                    case 0xd11801cf { result := _ELECTION_MODULE } // ElectionModule.withdrawNomination()\n                    case 0xd82f25f0 { result := _ELECTION_MODULE } // ElectionModule.getCandidateVotes()\n                    case 0xd83eb231 { result := _ELECTION_MODULE } // ElectionModule.withdrawVote()\n                    case 0xd9617851 { result := _ELECTION_MODULE } // ElectionModule.getCrossChainDebtShareMerkleRootBlockNumber()\n                    case 0xdfe7cd3a { result := _ELECTION_MODULE } // ElectionModule.getDebtShareSnapshotId()\n                    case 0xe1509015 { result := _ELECTION_MODULE } // ElectionModule.getVotingPeriodStartDate()\n                    leave\n                }\n                switch sig\n                case 0xe327b585 { result := _ELECTION_MODULE } // ElectionModule.isElectionEvaluated()\n                case 0xe420d7f9 { result := _ELECTION_MODULE } // ElectionModule.getNominationPeriodStartDate()\n                case 0xedc968ba { result := _ELECTION_MODULE } // ElectionModule.calculateBallotId()\n                case 0xee695137 { result := _ELECTION_MODULE } // ElectionModule.initializeElectionModule()\n                case 0xf2516dbf { result := _ELECTION_MODULE } // ElectionModule.getElectionWinners()\n                case 0xf2e56dea { result := _ELECTION_MODULE } // ElectionModule.getDebtShare()\n                case 0xfcd7e1d7 { result := _ELECTION_MODULE } // ElectionModule.nominate()\n                case 0xffe7f643 { result := _ELECTION_MODULE } // ElectionModule.getEpochIndex()\n                case 0xfff17b8e { result := _ELECTION_MODULE } // ElectionModule.getMaxDateAdjustmenTolerance()\n                leave\n            }\n\n            implementation := findImplementation(sig32)\n        }\n\n        if (implementation == address(0)) {\n            revert UnknownSelector(sig4);\n        }\n\n        // Delegatecall to the implementation contract\n        assembly {\n            calldatacopy(0, 0, calldatasize())\n\n            let result := delegatecall(gas(), implementation, 0, calldatasize(), 0, 0)\n            returndatacopy(0, 0, returndatasize())\n\n            switch result\n            case 0 {\n                revert(0, returndatasize())\n            }\n            default {\n                return(0, returndatasize())\n            }\n        }\n    }\n}\n",
     "ast": {
       "absolutePath": "contracts/Router.sol",
       "exportedSymbols": {
@@ -89232,7 +89350,7 @@
                 }
               },
               "value": {
-                "hexValue": "307863444132364632664441393431623941384461393534373844336266416432313239384137373044",
+                "hexValue": "307836323245623262424532323032613341613946313530434532433338363532394246313835453934",
                 "id": 7,
                 "isConstant": false,
                 "isLValue": false,
@@ -89245,7 +89363,7 @@
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 },
-                "value": "0xcDA26F2fDA941b9A8Da95478D3bfAd21298A770D"
+                "value": "0x622Eb2bBE2202a3Aa9F150CE2C386529BF185E94"
               },
               "visibility": "private"
             },
@@ -89276,7 +89394,7 @@
                 }
               },
               "value": {
-                "hexValue": "307865353946664245396543464535363541353844654164456234433565393341416133334564373738",
+                "hexValue": "307833333034383838356536374365324246303632334434413346383464364533436130463838454530",
                 "id": 10,
                 "isConstant": false,
                 "isLValue": false,
@@ -89289,7 +89407,7 @@
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 },
-                "value": "0xe59FfBE9eCFE565A58DeAdEb4C5e93AAa33Ed778"
+                "value": "0x33048885e67Ce2BF0623D4A3F84d6E3Ca0F88EE0"
               },
               "visibility": "private"
             },
@@ -89320,7 +89438,7 @@
                 }
               },
               "value": {
-                "hexValue": "307835413738353530633138323534376161313534433230614466344331343536393141333439313738",
+                "hexValue": "307836383641623533656139393342333335386537423939373437363844346162453644373730323536",
                 "id": 13,
                 "isConstant": false,
                 "isLValue": false,
@@ -89333,7 +89451,7 @@
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 },
-                "value": "0x5A78550c182547aa154C20aDf4C145691A349178"
+                "value": "0x686Ab53ea993B3358e7B9974768D4abE6D770256"
               },
               "visibility": "private"
             },
@@ -89364,7 +89482,7 @@
                 }
               },
               "value": {
-                "hexValue": "307836304630306339643962313438363939303533366337633131613763384141393532353136634232",
+                "hexValue": "307839374345623232413738386531313431364536643343383433333133653442613562653346446230",
                 "id": 16,
                 "isConstant": false,
                 "isLValue": false,
@@ -89377,7 +89495,7 @@
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 },
-                "value": "0x60F00c9d9b1486990536c7c11a7c8AA952516cB2"
+                "value": "0x97CEb22A788e11416E6d3C843313e4Ba5be3FDb0"
               },
               "visibility": "private"
             },

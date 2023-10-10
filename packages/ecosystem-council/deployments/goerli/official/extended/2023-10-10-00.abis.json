@@ -9746,18 +9746,7 @@
     },
     {
       "inputs": [],
-      "name": "NoChange",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "contr",
-          "type": "address"
-        }
-      ],
-      "name": "NotAContract",
+      "name": "NonUpgradeable",
       "type": "error"
     },
     {
@@ -9774,11 +9763,6 @@
     {
       "inputs": [],
       "name": "UpgradeSimulationFailed",
-      "type": "error"
-    },
-    {
-      "inputs": [],
-      "name": "ZeroAddress",
       "type": "error"
     },
     {
