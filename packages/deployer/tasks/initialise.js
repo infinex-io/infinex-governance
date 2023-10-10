@@ -97,6 +97,7 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
       debtShareContract: DEBT_CONTRACT,
     });
     await hre.run(SUBTASK_INITIALISE_EXTRA);
+    await hre.run(SUBTASK_INITIALISE_OWNER, { owner });
   });
 
 /*
