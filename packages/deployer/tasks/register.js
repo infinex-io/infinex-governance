@@ -10,11 +10,18 @@ const {
 const logger = require('@synthetixio/core-js/utils/io/logger');
 const prompter = require('@synthetixio/core-js/utils/io/prompter');
 const { readPackageJson } = require('@synthetixio/core-js/utils/misc/npm');
+const types = require('@synthetixio/core-js/utils/hardhat/argument-types');
 
 task(TASK_REGISTER, 'Executes logic during the nomination event')
   .addFlag('noConfirm', 'Skip all confirmation prompts', false)
   .addFlag('debug', 'Display debug logs', false)
   .addFlag('quiet', 'Silence all output', false)
+  .addOptionalParam(
+    'instance',
+    'The name of the target instance for deployment',
+    'official',
+    types.alphanumeric
+  )
   .setAction(async (taskArguments, hre) => {
     const { debug, quiet, noConfirm } = taskArguments;
 

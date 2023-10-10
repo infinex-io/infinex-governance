@@ -9,10 +9,6 @@ subtask(
 ).setAction(async ({ snapshotId }, hre) => {
   logger.subtitle('Taking Snapshot');
 
-  if (!snapshotId) {
-    throw new Error('missing snapshot id');
-  }
-
   const electionModuleFactory = await hre.ethers.getContractFactory(
     'contracts/modules/ElectionModule.sol:ElectionModule'
   );
