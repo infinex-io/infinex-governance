@@ -5,5 +5,9 @@ import {UpgradeModule as BaseUpgradeModule} from "@synthetixio/core-modules/cont
 
 // solhint-disable-next-line no-empty-blocks
 contract UpgradeModule is BaseUpgradeModule {
+    error NonUpgradeable();
 
+    function _upgradeTo(address) internal virtual override {
+        revert NonUpgradeable();
+    }
 }
