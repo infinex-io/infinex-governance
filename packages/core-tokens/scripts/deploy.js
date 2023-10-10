@@ -26,10 +26,6 @@ async function main() {
   console.log('investor token', investorToken.address);
   await investorToken.deployed();
 
-  const investorCounting = await investorCountingFactory.deploy(investorToken.address);
-  console.log('investorCounting', investorCounting.address);
-  await investorCounting.deployed();
-
   console.log('done.');
 
   fs.writeFileSync(
