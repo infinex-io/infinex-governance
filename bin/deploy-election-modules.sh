@@ -3,7 +3,7 @@
 function deployAndVerify() {
   cd "packages/$1"
   print $(pwd)
-  npx hardhat deploy --no-confirm --clear --network $NETWORK
+  npx hardhat deploy --no-confirm --network $NETWORK
   npx hardhat deploy:verify --network $NETWORK
   cd ../../
 }

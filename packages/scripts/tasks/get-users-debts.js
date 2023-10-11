@@ -1,4 +1,4 @@
-const { task } = require('hardhat/config');
+const { task, subtask } = require('hardhat/config');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
@@ -26,7 +26,7 @@ task(
   .addOptionalParam(
     'fromBlock',
     'Block number from where to start getting users debts',
-    '14169250',
+    '16104186',
     types.int
   )
   .addOptionalParam('untilBlock', 'Block until which to fetch data. Defaults to latest.')
@@ -51,7 +51,7 @@ task(
 
     const Contract = new hre.ethers.Contract(address, SynthetixDebtShare.abi, provider);
 
-    await downloadDebts({
+    return await downloadDebts({
       Contract,
       fromBlock: Number(fromBlock),
       untilBlock: Number(untilBlock),
@@ -68,7 +68,7 @@ async function downloadDebts({ Contract, fromBlock, untilBlock, filename }) {
 
   // Do not get debts for addresses already fetched
   if (fs.existsSync(filename)) {
-    const data = read(filename).debts;
+    const data = read(filename);
 
     if (
       data.contractAddress !== Contract.address ||
@@ -97,6 +97,8 @@ async function downloadDebts({ Contract, fromBlock, untilBlock, filename }) {
         2
       )
     );
+
+    return filename;
   }
 
   await getDebts({ filename, Contract, untilBlock, addresses });

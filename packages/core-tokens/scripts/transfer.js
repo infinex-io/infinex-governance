@@ -10,9 +10,9 @@ async function main() {
     fs.readFileSync(path.join(__dirname, '../deployment.' + network.name + '.json'), 'utf8')
   );
 
-  const { TREASURY_SAFE, INFINEX_SAFE } = process.env;
+  const { TREASURY_SAFE, CC_TOKEN_SAFE } = process.env;
 
-  if (!TREASURY_SAFE || !INFINEX_SAFE) {
+  if (!TREASURY_SAFE || !CC_TOKEN_SAFE) {
     throw new Error('missing env variables');
   }
 
@@ -24,7 +24,7 @@ async function main() {
   console.log('nominated investor owner ' + tx.hash);
   await tx.wait();
 
-  tx = await ccToken.transferOwnership(INFINEX_SAFE);
+  tx = await ccToken.transferOwnership(CC_TOKEN_SAFE);
   console.log('nominated cc owner ' + tx.hash);
   await tx.wait();
 

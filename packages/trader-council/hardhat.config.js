@@ -1,4 +1,7 @@
 const config = require('@synthetixio/common-config/hardhat.config.js');
+const { requireAll } = require('@synthetixio/core-js/utils/misc/require-all');
+
+requireAll(`${__dirname}/subtasks`);
 
 /**
  * @type import('hardhat/config').HardhatUserConfig

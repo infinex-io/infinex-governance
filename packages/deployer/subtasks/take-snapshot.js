@@ -2,6 +2,8 @@ const logger = require('@synthetixio/core-js/utils/io/logger');
 const prompter = require('@synthetixio/core-js/utils/io/prompter');
 const { subtask } = require('hardhat/config');
 const { SUBTASK_TAKE_SNAPSHOT } = require('../task-names');
+const fs = require('fs');
+const path = require('path');
 
 subtask(
   SUBTASK_TAKE_SNAPSHOT,
@@ -42,7 +44,6 @@ subtask(
     }
   }
 
-  let tx;
   if ((await electionModule.getCurrentPeriod()).eq(1) && snapshotId) {
     let debtShareSnapshotId;
     try {
@@ -54,9 +55,15 @@ subtask(
     if (debtShareSnapshotId !== BigInt(snapshotId)) {
       await prompter.confirmAction('Take Snapshot ' + snapshotId);
 
-      tx = await electionModule.setDebtShareSnapshotId(snapshotId);
-      logger.info('set snapshot id ' + tx.hash);
-      await tx.wait();
+      const filePath = path.join(__dirname, '../../../tx.csv');
+      fs.appendFileSync(
+        filePath,
+        [
+          electionModule.address,
+          electionModule.interface.encodeFunctionData('setDebtShareSnapshotId', [snapshotId]),
+        ].join(',') + '\n'
+      );
+
       logger.info('done');
     } else {
       logger.info('snapshot already staken');

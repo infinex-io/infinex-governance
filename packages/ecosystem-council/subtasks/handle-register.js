@@ -11,7 +11,6 @@ subtask(SUBTASK_HANDLE_REGISTER, 'Register event').setAction(async (_, hre) => {
 
   await hre.run(SUBTASK_TAKE_SNAPSHOT);
   await hre.run(SUBTASK_SET_CROSS_CHAIN_MERKLE_ROOT, {
-    merkleRoot: process.env.MERKLE_ROOT,
-    blockNumber: process.env.MERKLE_ROOT_BLOCK_NUMBER,
+    blockNumber: process.env.SNX_MERKLE_BLOCK_NUMBER,
   });
 });

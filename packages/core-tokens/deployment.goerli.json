@@ -1,36 +1,28 @@
 {
     "investorToken": {
-        "address": "0x5bA4819fC9620b48BF55Fe8B3f903cFE28B3184B",
+        "address": "0x251309BFc2341e9425705362E614C09729d772d8",
         "contract": "contracts/InvestorToken.sol:InvestorToken",
         "constructorArguments": [
-            [
-                "0xBA4bB4e7102229d0f288F04BeA3eA7e61c9C2aB6",
-                "0x003adee9f572ba3b9091f2ed0400040bcb3a7244",
-                "0xccf10B8ff96579BeEFb2a75F674181E86D3c507E",
-                "0xDFdDDe062A9CE719931Dfea3B618D192F3c3aabe",
-                "0x1BE960932CbC08f29cf70349c0a0547c75A297BC"
-            ]
+            []
         ],
-        "tx": "0x8d9a86bcc0776d2d1674b2be5c4c4d3d66076c3922ea8ed365d456335a8b9df0"
+        "tx": "0xc4c316f1087a9fe925d3f0678f8c9eeaa338f85218f99c28da7c55829d31784e"
     },
     "ccToken": {
-        "address": "0x989796307dF57549d0a6e4f924460F8dd076B1ee",
+        "address": "0xFc00e4a993512B08Bbd11c9083BE32D5498ac2F9",
         "contract": "contracts/CoreContributorToken.sol:CoreContributorToken",
         "constructorArguments": [
             [
-                "0xBA4bB4e7102229d0f288F04BeA3eA7e61c9C2aB6",
-                "0x003adee9f572ba3b9091f2ed0400040bcb3a7244",
-                "0xccf10B8ff96579BeEFb2a75F674181E86D3c507E",
-                "0xDFdDDe062A9CE719931Dfea3B618D192F3c3aabe",
-                "0x1BE960932CbC08f29cf70349c0a0547c75A297BC"
+                "0x9dee153760f54f0876a21b6fce3ba986ebc6eb73",
+                "0x85eba47bab478733a5b018f62418ceda93a49158",
+                "0x1c856bd47e59a85dcc6cc375212164fec34e4b6f"
             ]
         ],
-        "tx": "0x95f6d0880c1dc45280ec5fb48d88393650d6e01cc12bdce0ef8624f269782fcf"
+        "tx": "0x78b7c3348762baf6a658a77a4b9fda93ab9826f7aa40c2ae198847f16c015664"
     },
     "blankCounting": {
-        "address": "0x00F59554de3E0b874ECBf8812061d06327752643",
+        "address": "0x68557214C468c019339bE44EfBA354b86EE345F1",
         "contract": "contracts/BlankCounting.sol:BlankCounting",
         "constructorArguments": [],
-        "tx": "0x0998d5254b573416a6a34626105d7eb3c2fe62660c0596ed27c9834f3931ca07"
+        "tx": "0xbb7ff4c88b2962ba3ad4ae46964e799efbf9c9941abfc9db5c2504a69a50c619"
     }
 }

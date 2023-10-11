@@ -7,12 +7,8 @@ async function main() {
   const ccTokenFactory = await ethers.getContractFactory('CoreContributorToken');
   const blankCountingFactory = await ethers.getContractFactory('BlankCounting');
 
-  if (!process.env.INITIAL_MEMBERS || !process.env.INITIAL_INVESTORS) {
-    throw new Error('missing initial members or investors');
-  }
-
-  const INITIAL_MEMBERS = process.env.INITIAL_MEMBERS.split(',');
-  const INITIAL_INVESTORS = process.env.INITIAL_INVESTORS.split(',');
+  const INITIAL_MEMBERS = (process.env.INITIAL_MEMBERS || '').split(',').filter(Boolean);
+  const INITIAL_INVESTORS = (process.env.INITIAL_INVESTORS || '').split(',').filter(Boolean);
 
   const ccToken = await ccTokenFactory.deploy(INITIAL_MEMBERS);
   console.log('cc token', ccToken.address);

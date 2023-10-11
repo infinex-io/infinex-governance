@@ -2,14 +2,16 @@ const logger = require('@synthetixio/core-js/utils/io/logger');
 const prompter = require('@synthetixio/core-js/utils/io/prompter');
 const { subtask } = require('hardhat/config');
 const { SUBTASK_SET_CROSS_CHAIN_MERKLE_ROOT } = require('../task-names');
+const path = require('path');
+const fs = require('fs');
 
 subtask(
   SUBTASK_SET_CROSS_CHAIN_MERKLE_ROOT,
   'Takes a snapshot of the election module, from the current block number'
-).setAction(async ({ merkleRoot, blockNumber }, hre) => {
+).setAction(async ({ blockNumber }, hre) => {
   logger.subtitle('Setting Cross Chain Merkle Root');
 
-  if (!merkleRoot || !blockNumber) {
+  if (!blockNumber) {
     throw new Error('missing merkle root or block number');
   }
 
@@ -37,12 +39,29 @@ subtask(
     currentBlockNumber = BigInt(0);
   }
 
-  let tx;
+  const { merkleRoot } = require(path.join(
+    __dirname,
+    '../../scripts/data/' + blockNumber + '-debts.json'
+  ));
+
+  if (!merkleRoot) {
+    throw new Error('could not find merkle root');
+  }
+
   if (currentMerkleRoot !== BigInt(merkleRoot) || currentBlockNumber !== BigInt(blockNumber)) {
     await prompter.confirmAction('Update merkle root ' + merkleRoot + ' ' + blockNumber);
 
-    tx = await electionModule.setCrossChainDebtShareMerkleRoot(merkleRoot, blockNumber);
-    logger.info('updating merkle root ' + tx.hash);
-    await tx.wait();
+    logger.info('create merkle root tx');
+    const filePath = path.join(__dirname, '../../../tx.csv');
+    fs.appendFileSync(
+      filePath,
+      [
+        electionModule.address,
+        electionModule.interface.encodeFunctionData('setCrossChainDebtShareMerkleRoot', [
+          merkleRoot,
+          blockNumber,
+        ]),
+      ].join(',') + '\n'
+    );
   }
 });

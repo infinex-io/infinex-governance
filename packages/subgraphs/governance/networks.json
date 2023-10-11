@@ -16,5 +16,23 @@
       "address": "0x6cC6050bE3214D14DB46188e5df59bDEAE97a42a",
       "startBlock": 10313622
     }
+  },
+  "goerli": {
+    "CoreContributor": {
+      "address": "0x7358745Df636c4A162152CA7670cbE6321A71E67",
+      "startBlock": 9844199
+    },
+    "Ecosystem": {
+      "address": "0x3c24306a461A89Ffe3a2be80Ec3686C65Ffc4aC0",
+      "startBlock": 9844199
+    },
+    "Trader": {
+      "address": "0xc2c6dDE4208a8aB98966326eFF0B0C710478354f",
+      "startBlock": 9844199
+    },
+    "Treasury": {
+      "address": "0xd7fBbb7AF86A3dFf17e067e44Fa2333059f09DcC",
+      "startBlock": 9844199
+    }
   }
 }
