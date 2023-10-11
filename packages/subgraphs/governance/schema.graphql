@@ -9,6 +9,7 @@ type Vote @entity {
 
 type VoteResult @entity {
   id: ID!
+  ballotId: Bytes!
   epochIndex: String!
   votePower: BigInt!
   contract: String!

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm tx.csv
+
 function register() {
   cd "packages/$1"
   npx hardhat register --no-confirm --network $NETWORK

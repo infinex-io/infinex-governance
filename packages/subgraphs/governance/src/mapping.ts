@@ -33,6 +33,8 @@ export function handleVoteRecorded(event: VoteRecorded): void {
     result.epochIndex = event.params.epochIndex.toString();
     result.contract = event.address.toHexString();
   }
+
+  result.ballotId = event.params.ballotId;
   result.votePower = result.votePower.plus(votePower);
   result.voteCount = result.voteCount.plus(ONE_BI);
   result.save();
