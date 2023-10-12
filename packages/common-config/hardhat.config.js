@@ -34,7 +34,7 @@ module.exports = {
       url: 'http://localhost:8545',
     },
     goerli: {
-      url: process.env.NETWORK_ENDPOINT || 'https://goerli.infura.io',
+      url: process.env.NETWORK_ENDPOINT || 'https://goerli.infura.io/v3/' + process.env.INFURA_KEY,
       accounts: process.env.DEPLOYER_PRIVATE_KEY ? [process.env.DEPLOYER_PRIVATE_KEY] : [],
     },
     ['optimistic-kovan']: {

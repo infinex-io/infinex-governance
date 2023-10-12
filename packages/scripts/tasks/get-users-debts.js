@@ -26,10 +26,14 @@ task(
   .addOptionalParam(
     'fromBlock',
     'Block number from where to start getting users debts',
-    '16104186',
+    '14169250',
     types.int
   )
-  .addOptionalParam('untilBlock', 'Block until which to fetch data. Defaults to latest.')
+  .addOptionalParam(
+    'untilBlock',
+    'Block until which to fetch data. Defaults to latest.',
+    process.env.SNX_MERKLE_BLOCK_NUMBER
+  )
   .setAction(async ({ address, fromBlock, untilBlock, providerUrl }, hre) => {
     const provider = providerUrl
       ? new hre.ethers.providers.JsonRpcProvider(providerUrl)
@@ -106,14 +110,31 @@ async function downloadDebts({ Contract, fromBlock, untilBlock, filename }) {
 
 async function getAccounts(Contract, fromBlock, toBlock) {
   const filter = Contract.filters.Transfer(null, null, null);
-  const events = await Contract.queryFilter(filter, fromBlock, toBlock);
+  const addresses = new Set();
+  const interval = 400_000;
+
+  let currentToBlock;
+  let curFromBlock = +fromBlock;
+  do {
+    currentToBlock = curFromBlock + interval - 1;
+
+    console.log('fetching', curFromBlock, currentToBlock);
+
+    const events = await Contract.queryFilter(
+      filter,
+      curFromBlock,
+      Math.min(currentToBlock, +toBlock)
+    );
+
+    for (const event of events) {
+      addresses.add(event.args.to);
+      addresses.add(event.args.from);
+    }
+
+    curFromBlock = currentToBlock;
+  } while (currentToBlock < toBlock);
 
   // Use a Set to have implicitily unique values
-  const addresses = new Set();
-  for (const event of events) {
-    addresses.add(event.args.to);
-    addresses.add(event.args.from);
-  }
 
   addresses.delete('0x0000000000000000000000000000000000000000');
 
@@ -127,19 +148,25 @@ async function getDebts({ filename, addresses, Contract, untilBlock }) {
   const pad = addresses.length.toString().length;
 
   const queue = createQueue.promise(async function (address) {
-    try {
-      const debt = await Contract.balanceOf(address, { blockTag: untilBlock });
+    let error;
+    for (let j = 0; j < 10; j++) {
+      try {
+        const debt = await Contract.balanceOf(address, { blockTag: untilBlock });
 
-      if (debt > 0) {
-        writeDebt(filename, address, debt.toString());
+        if (debt > 0) {
+          writeDebt(filename, address, debt.toString());
+        }
+
+        const index = (++i).toString().padStart(pad);
+        logger.info(`${index} ${address} debt: ${ethers.utils.formatEther(debt)}`);
+        return;
+      } catch (err) {
+        error = err;
+        await new Promise((res) => setTimeout(res, 1000));
       }
-
-      const index = (++i).toString().padStart(pad);
-      logger.info(`${index} ${address} debt: ${ethers.utils.formatEther(debt)}`);
-    } catch (err) {
-      logger.error(`Error processing ${address}:`);
-      logger.error(err);
     }
+    logger.error(`Error processing ${address}:`);
+    logger.error(error);
   }, 15);
 
   for (const address of addresses) {
