@@ -309,6 +309,10 @@ contract ElectionModule is
         return _electionSettings().minimumActiveMembers;
     }
 
+    function getTotalBallots() external view override returns (uint256) {
+        return _getCurrentElection().ballotIds.length;
+    }
+
     function getEpochIndex() external view override returns (uint) {
         return _getCurrentEpochIndex();
     }

@@ -7,6 +7,8 @@ const {
   SUBTASK_POST_VOTING_SCRIPT,
   SUBTASK_POST_RESOLVE,
   SUBTASK_POST_SYNC_SCHEDULE,
+  TASK_RENOUNCE_OWNERSHIP,
+  SUBTASK_RENOUNCE_OWNERSHIP,
 } = require('../task-names');
 
 const logger = require('@synthetixio/core-js/utils/io/logger');
@@ -14,18 +16,10 @@ const prompter = require('@synthetixio/core-js/utils/io/prompter');
 const { readPackageJson } = require('@synthetixio/core-js/utils/misc/npm');
 const types = require('@synthetixio/core-js/utils/hardhat/argument-types');
 
-task(TASK_POST_VOTING, 'Executes logic during the nomination event')
+task(TASK_RENOUNCE_OWNERSHIP, 'Executes logic during the nomination event')
   .addFlag('noConfirm', 'Skip all confirmation prompts', false)
   .addFlag('debug', 'Display debug logs', false)
   .addFlag('quiet', 'Silence all output', false)
-
-  .addOptionalParam(
-    'nominationDays',
-    'The nomination duration in days',
-    process.env.NOMINATION_DAYS
-  )
-  .addOptionalParam('votingDays', 'The voting duration in days', process.env.VOTING_DAYS)
-  .addOptionalParam('epochDays', 'The epoch duration in days', process.env.EPOCH_DAYS)
   .addOptionalParam(
     'instance',
     'The name of the target instance for deployment',
@@ -47,13 +41,11 @@ task(TASK_POST_VOTING, 'Executes logic during the nomination event')
       if (err.code !== 'ENOENT') throw err;
     }
 
-    await logger.title('POST_VOTING');
+    await logger.title('RENOUNCE_OWNERSHIP');
 
     await hre.run(SUBTASK_LOAD_DEPLOYMENT, taskArguments);
     await _compile(hre, quiet);
-    await hre.run(SUBTASK_POST_RESOLVE);
-    await hre.run(SUBTASK_POST_SYNC_SCHEDULE, taskArguments);
-    await hre.run(SUBTASK_POST_VOTING_SCRIPT);
+    await hre.run(SUBTASK_RENOUNCE_OWNERSHIP);
   });
 
 /*

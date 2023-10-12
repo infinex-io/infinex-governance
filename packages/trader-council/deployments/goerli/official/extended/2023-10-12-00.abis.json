@@ -1729,6 +1729,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "getTotalBallots",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",
@@ -3565,6 +3578,19 @@
           "internalType": "address[]",
           "name": "",
           "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTotalBallots",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -7466,6 +7492,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "getTotalBallots",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",
@@ -7854,55 +7893,6 @@
     {
       "inputs": [],
       "name": "withdrawVote",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ],
-  "@synthetixio/synthetix-governance/contracts/mocks/DebtShareMock.sol:DebtShareMock": [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "user",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "periodId",
-          "type": "uint256"
-        }
-      ],
-      "name": "balanceOfOnPeriod",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "user",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "balance",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "periodId",
-          "type": "uint256"
-        }
-      ],
-      "name": "setBalanceOfOnPeriod",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -8892,7 +8882,7 @@
       "type": "event"
     }
   ],
-  "contracts/TreasuryCouncil.sol:TreasuryCouncil": [
+  "contracts/TraderCouncil.sol:TraderCouncil": [
     {
       "inputs": [
         {
@@ -10940,6 +10930,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "getTotalBallots",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",
@@ -12400,6 +12403,19 @@
           "internalType": "address[]",
           "name": "",
           "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTotalBallots",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",

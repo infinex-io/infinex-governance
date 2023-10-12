@@ -10,6 +10,10 @@ async function main() {
   const INITIAL_MEMBERS = (process.env.INITIAL_MEMBERS || '').split(',').filter(Boolean);
   const INITIAL_INVESTORS = (process.env.INITIAL_INVESTORS || '').split(',').filter(Boolean);
 
+  if (!INITIAL_MEMBERS.length) {
+    throw new Error('missing members');
+  }
+
   const ccToken = await ccTokenFactory.deploy(INITIAL_MEMBERS);
   console.log('cc token', ccToken.address);
   await ccToken.deployed();

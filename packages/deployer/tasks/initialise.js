@@ -19,7 +19,7 @@ task(TASK_INITIALISE, 'Initialises all of the election modules')
   .addFlag('noConfirm', 'Skip all confirmation prompts', false)
   .addFlag('debug', 'Display debug logs', false)
   .addFlag('quiet', 'Silence all output', false)
-  .addOptionalParam('owner', 'The designated owner of the contract', process.env.ELECTION_OWNER)
+  .addOptionalParam('owner', 'The designated owner of the contract', process.env.CC_TOKEN_SAFE)
   .addOptionalParam(
     'debtShareContractName',
     'The name of the debt share contract',

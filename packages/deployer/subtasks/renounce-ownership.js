@@ -1,12 +1,17 @@
 const logger = require('@synthetixio/core-js/utils/io/logger');
 const { subtask } = require('hardhat/config');
-const { SUBTASK_POST_RESOLVE } = require('../task-names');
+const { SUBTASK_RENOUNCE_OWNERSHIP } = require('../task-names');
 const path = require('path');
 const fs = require('fs');
+const { daysToSeconds } = require('@synthetixio/core-js/utils/misc/dates');
 
-subtask(SUBTASK_POST_RESOLVE, 'Subtask post voting handler to do some logic').setAction(
-  async (_, hre) => {
+subtask(SUBTASK_RENOUNCE_OWNERSHIP, 'Subtask post voting handler to do some logic').setAction(
+  async ({ nominationDays, votingDays, epochDays }, hre) => {
     logger.subtitle('POST_RESOLVE');
+
+    if (!nominationDays || !votingDays || !epochDays) {
+      throw new Error('missing days data');
+    }
 
     const contracts = Object.values(hre.deployer.deployment.general.contracts);
     const proxyData = contracts.find((data) => data.isProxy);
@@ -18,18 +23,13 @@ subtask(SUBTASK_POST_RESOLVE, 'Subtask post voting handler to do some logic').se
 
     const contract = electionFactory.attach(proxyAddress);
 
-    const totalBallots = await contract.getTotalBallots();
-
-    const evaluates = Array.from(Array(totalBallots.div(1000).toNumber() + 1)).map(() => {
-      return [contract.address, contract.interface.encodeFunctionData('evaluate', [1000])];
-    });
-
-    const data = [
-      ...evaluates,
-      [contract.address, contract.interface.encodeFunctionData('resolve', [])],
-    ];
+    const txData = contract.interface.encodeFunctionData('modifyEpochSchedule', [
+      nominationStartDate,
+      votingStartDate,
+      epochEndDate,
+    ]);
 
     const filePath = path.join(__dirname, '../../../tx.csv');
-    fs.appendFileSync(filePath, data.map((d) => d.join(',')).join('\n') + '\n');
+    fs.appendFileSync(filePath, [contract.address, txData].join(',') + '\n');
   }
 );

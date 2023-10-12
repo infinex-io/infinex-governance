@@ -112,6 +112,9 @@ interface IElectionModule {
     /// @notice Returns the minimum active members that the council needs to avoid an emergency election
     function getMinimumActiveMembers() external view returns (uint8);
 
+    /// @notice Returns the minimum active members that the council needs to avoid an emergency election
+    function getTotalBallots() external view returns (uint256);
+
     /// @notice Returns the index of the current epoch. The first epoch's index is 1
     function getEpochIndex() external view returns (uint);
 
