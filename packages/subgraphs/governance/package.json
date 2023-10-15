@@ -7,7 +7,7 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy-goerli": "graph deploy michaelcarrotanderson/governance-goerli --network goerli --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy": "graph deploy infinex-io/governance --network goerli --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "deploy": "graph deploy michaelcarrotanderson/governance-optimism --network goerli --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "deploy-local": "graph deploy infinex-io/testgraph --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020"
   },
   "devDependencies": {

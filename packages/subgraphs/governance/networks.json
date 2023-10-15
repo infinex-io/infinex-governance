@@ -1,20 +1,20 @@
 {
   "optimism": {
-    "Spartan": {
-      "address": "0xE832C302D1160EAe57045eb9d9Ea14daBd2E229c",
-      "startBlock": 10313622
+    "CoreContributor": {
+      "address": "0x341a0e7ad98D0F02bB1C1bC209ab98c23037EcE8",
+      "startBlock": 110873883
     },
-    "Ambassador": {
-      "address": "0x37fAc8c146889333734015B0C942b620aCfeeff8",
-      "startBlock": 10313622
+    "Ecosystem": {
+      "address": "0xc458A3e489a4d024943cC5A1ec81AEB0382b9048",
+      "startBlock": 110873883
     },
-    "Grants": {
-      "address": "0x6891FfAA59c0Ce04b4E3C6eaa50CFc5E2fc77b77",
-      "startBlock": 10313622
+    "Trader": {
+      "address": "0x009Caa9767B28779582f84d652Ad396bA7b7B558",
+      "startBlock": 110873883
     },
     "Treasury": {
-      "address": "0x6cC6050bE3214D14DB46188e5df59bDEAE97a42a",
-      "startBlock": 10313622
+      "address": "0x286bf3d6b7C7C89B33c1EeEea7563FB886B9ea6d",
+      "startBlock": 110873883
     }
   },
   "goerli": {
