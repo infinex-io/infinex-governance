@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: CoreContributor
-    network: goerli
+    network: optimism
     source:
       abi: ElectionModule
-      address: "0x7aE450F67BA2C9F7FEEd299038184D83558f81bB"
-      startBlock: 9862577
+      address: "0x341a0e7ad98D0F02bB1C1bC209ab98c23037EcE8"
+      startBlock: 110873883
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -28,11 +28,11 @@ dataSources:
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: Ecosystem
-    network: goerli
+    network: optimism
     source:
       abi: ElectionModule
-      address: "0xdE04Ed1c36b27118FC4e143aa3679966d546341a"
-      startBlock: 9862594
+      address: "0xc458A3e489a4d024943cC5A1ec81AEB0382b9048"
+      startBlock: 110873883
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -50,11 +50,11 @@ dataSources:
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: Trader
-    network: goerli
+    network: optimism
     source:
       abi: ElectionModule
-      address: "0xB913e7421b1dA78a343d8883C5950538d4140d83"
-      startBlock: 9862608
+      address: "0x009Caa9767B28779582f84d652Ad396bA7b7B558"
+      startBlock: 110873883
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -72,11 +72,11 @@ dataSources:
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: Treasury
-    network: goerli
+    network: optimism
     source:
       abi: ElectionModule
-      address: "0x227FE27C0F9B180f090968AD79C0B8191cE2B2AE"
-      startBlock: 9862622
+      address: "0x286bf3d6b7C7C89B33c1EeEea7563FB886B9ea6d"
+      startBlock: 110873883
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
