@@ -9,8 +9,8 @@ dataSources:
     network: goerli
     source:
       abi: ElectionModule
-      address: "0x7358745Df636c4A162152CA7670cbE6321A71E67"
-      startBlock: 9844199
+      address: "0x7aE450F67BA2C9F7FEEd299038184D83558f81bB"
+      startBlock: 9862577
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -31,8 +31,8 @@ dataSources:
     network: goerli
     source:
       abi: ElectionModule
-      address: "0x3c24306a461A89Ffe3a2be80Ec3686C65Ffc4aC0"
-      startBlock: 9844199
+      address: "0xdE04Ed1c36b27118FC4e143aa3679966d546341a"
+      startBlock: 9862594
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -53,8 +53,8 @@ dataSources:
     network: goerli
     source:
       abi: ElectionModule
-      address: "0xc2c6dDE4208a8aB98966326eFF0B0C710478354f"
-      startBlock: 9844199
+      address: "0xB913e7421b1dA78a343d8883C5950538d4140d83"
+      startBlock: 9862608
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -75,8 +75,8 @@ dataSources:
     network: goerli
     source:
       abi: ElectionModule
-      address: "0xd7fBbb7AF86A3dFf17e067e44Fa2333059f09DcC"
-      startBlock: 9844199
+      address: "0x227FE27C0F9B180f090968AD79C0B8191cE2B2AE"
+      startBlock: 9862622
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

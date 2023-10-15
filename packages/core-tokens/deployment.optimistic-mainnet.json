@@ -1,0 +1,29 @@
+{
+    "investorToken": {
+        "address": "0x7484da8fDACC2EFd0D8feFADc1ff5b1d0636313e",
+        "contract": "contracts/InvestorToken.sol:InvestorToken",
+        "constructorArguments": [
+            []
+        ],
+        "tx": "0x7c04cc2536bb6a3226b231e518e77c6a3f8cfcb71c93a2ba740ed06a3b35c9ef"
+    },
+    "ccToken": {
+        "address": "0x0B8225F7Be9e2368f96BaC61f0fBE692Ce9E3887",
+        "contract": "contracts/CoreContributorToken.sol:CoreContributorToken",
+        "constructorArguments": [
+            [
+                "0xBA4bB4e7102229d0f288F04BeA3eA7e61c9C2aB6",
+                "0x003adee9f572ba3b9091f2ed0400040bcb3a7244",
+                "0xDf28abE53AF0C9aB9cdD034598b2cec8842093a5",
+                "0x832f971D14D66b05ccD05406F114D37Ae27Fa264"
+            ]
+        ],
+        "tx": "0xee414ddeedb9f6691661c215118727d56d5bbadb95e66d19e45b70b7e02aed6e"
+    },
+    "blankCounting": {
+        "address": "0x300eD1f54e336e049c0C47540CC5986813558E52",
+        "contract": "contracts/BlankCounting.sol:BlankCounting",
+        "constructorArguments": [],
+        "tx": "0x295f58a2070ec7a1d9b3c30de17e3c01a1c05dfcb58327405308035402086e64"
+    }
+}
