@@ -8,6 +8,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol";
 
 contract InvestorToken is ERC721Votes, Ownable2Step, IDebtShare {
 
+    uint256 private currentId;
+
     constructor(address[] memory initialInvestors)
     ERC721("Infinex Benefactor", "INXBF")
     EIP712("INFINEX", "1") {
@@ -24,7 +26,7 @@ contract InvestorToken is ERC721Votes, Ownable2Step, IDebtShare {
         if (delegates(to) == address(0)) {
             _delegate(to, to);
         }
-        _mint(to, _getTotalSupply());
+        _mint(to, ++currentId);
     }
 
     function burn(uint256 tokenId) public virtual onlyOwner {
