@@ -17,6 +17,12 @@ task(
   const id = Math.floor(Date.now() / 1000);
   const output = path.join(__dirname, '../data/' + id + '-debts.json');
 
+  Object.keys(debts).forEach((key) => {
+    if (BigInt(debts[key]) <= BigInt(0)) {
+      delete debts[key];
+    }
+  });
+
   fs.writeFileSync(output, JSON.stringify(parseBalanceMap(debts)));
 
   console.log('GOVERNANCE_MERKLE_ID=' + id);
