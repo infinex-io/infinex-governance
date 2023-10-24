@@ -1,0 +1,110 @@
+{
+  "properties": {
+    "completed": true,
+    "totalGasUsed": "6477583"
+  },
+  "transactions": {
+    "0x4d1b74b146c751103614271626848f4b5032fc94149710934d66ce468f526ae4": {
+      "status": "confirmed",
+      "block": 9874201,
+      "description": "Deployment of contracts/modules/ElectionInspectionModule.sol:ElectionInspectorModule"
+    },
+    "0x77f3016fe21d8f36022e8555da44f28e579e185c80e487b3b4b5e5a96fffc2e7": {
+      "status": "confirmed",
+      "block": 9874202,
+      "description": "Deployment of contracts/modules/ElectionModule.sol:ElectionModule"
+    },
+    "0xbaa08e4a8fad4c8f980b6bbd8efc2a92099d284a01f10541b2c99067a281f6c3": {
+      "status": "confirmed",
+      "block": 9874203,
+      "description": "Deployment of contracts/modules/OwnerModule.sol:OwnerModule"
+    },
+    "0xd45440005a2bde12cc86b60c8930b3498a462dd3e4614d70d57cba3a93dac103": {
+      "status": "confirmed",
+      "block": 9874204,
+      "description": "Deployment of contracts/modules/UpgradeModule.sol:UpgradeModule"
+    },
+    "0x547a48bacd46408a6f114e57ac5caef7fbd3b3af3ee99f26c4dce2864dee252c": {
+      "status": "confirmed",
+      "block": 9874205,
+      "description": "Deployment of contracts/Router.sol:Router"
+    },
+    "0x0d2df226f9194aca55ed7b3a991dd411429bbd7415251156a17da160ecdf8fc8": {
+      "status": "confirmed",
+      "block": 9874206,
+      "description": "Deployment of contracts/TreasuryCouncil.sol:TreasuryCouncil"
+    }
+  },
+  "contracts": {
+    "contracts/modules/ElectionInspectionModule.sol:ElectionInspectorModule": {
+      "deployedAddress": "0x04C8082727Ea110616F6077cD290efBD431EC642",
+      "deployTransaction": "0x4d1b74b146c751103614271626848f4b5032fc94149710934d66ce468f526ae4",
+      "isModule": true,
+      "deployedBytecodeHash": "0x89740ce4091e5d67351e9aaa7473d098807849fd6a77e680a82a0e977379b4c4",
+      "contractFullyQualifiedName": "contracts/modules/ElectionInspectionModule.sol:ElectionInspectorModule",
+      "contractName": "ElectionInspectorModule",
+      "sourceName": "contracts/modules/ElectionInspectionModule.sol",
+      "deploymentBlock": 9874201,
+      "deploymentCommit": "72300906c431ba45fb97a518cf100b427aedc2cb",
+      "proxyAddress": "0x813C67C75a839e80be3983e89F11a51389d2733A"
+    },
+    "contracts/modules/ElectionModule.sol:ElectionModule": {
+      "deployedAddress": "0xcc7c379Eb810B03b88A272D32635b8de268FF461",
+      "deployTransaction": "0x77f3016fe21d8f36022e8555da44f28e579e185c80e487b3b4b5e5a96fffc2e7",
+      "isModule": true,
+      "deployedBytecodeHash": "0x9ab9fb23df32f7d0f0153aebf1255d0079d8d2b9931acf91f6435c49eaff5572",
+      "contractFullyQualifiedName": "contracts/modules/ElectionModule.sol:ElectionModule",
+      "contractName": "ElectionModule",
+      "sourceName": "contracts/modules/ElectionModule.sol",
+      "deploymentBlock": 9874202,
+      "deploymentCommit": "72300906c431ba45fb97a518cf100b427aedc2cb",
+      "proxyAddress": "0x813C67C75a839e80be3983e89F11a51389d2733A"
+    },
+    "contracts/modules/OwnerModule.sol:OwnerModule": {
+      "deployedAddress": "0xEf805c61252073d741d21Ff186ed3b3851878fcB",
+      "deployTransaction": "0xbaa08e4a8fad4c8f980b6bbd8efc2a92099d284a01f10541b2c99067a281f6c3",
+      "isModule": true,
+      "deployedBytecodeHash": "0xfa5f32d34a9b72a207fe290a3bf7e6b506da8df11503cbd781d4a0e85e99fa75",
+      "contractFullyQualifiedName": "contracts/modules/OwnerModule.sol:OwnerModule",
+      "contractName": "OwnerModule",
+      "sourceName": "contracts/modules/OwnerModule.sol",
+      "deploymentBlock": 9874203,
+      "deploymentCommit": "72300906c431ba45fb97a518cf100b427aedc2cb",
+      "proxyAddress": "0x813C67C75a839e80be3983e89F11a51389d2733A"
+    },
+    "contracts/modules/UpgradeModule.sol:UpgradeModule": {
+      "deployedAddress": "0xe15Aeb54d0051ac6DBC38c882230A79aF8237aE3",
+      "deployTransaction": "0xd45440005a2bde12cc86b60c8930b3498a462dd3e4614d70d57cba3a93dac103",
+      "isModule": true,
+      "deployedBytecodeHash": "0x698883e833736ecdbdc9e26f31871966f37b951a27d67f3483424502a9668b26",
+      "contractFullyQualifiedName": "contracts/modules/UpgradeModule.sol:UpgradeModule",
+      "contractName": "UpgradeModule",
+      "sourceName": "contracts/modules/UpgradeModule.sol",
+      "deploymentBlock": 9874204,
+      "deploymentCommit": "72300906c431ba45fb97a518cf100b427aedc2cb",
+      "proxyAddress": "0x813C67C75a839e80be3983e89F11a51389d2733A"
+    },
+    "contracts/TreasuryCouncil.sol:TreasuryCouncil": {
+      "deployedAddress": "0x813C67C75a839e80be3983e89F11a51389d2733A",
+      "deployTransaction": "0x0d2df226f9194aca55ed7b3a991dd411429bbd7415251156a17da160ecdf8fc8",
+      "isProxy": true,
+      "deployedBytecodeHash": "0x93bb22ab54934f030ea126284da778abb5ba38fbc0c3008cd0ae7a0c7c336b64",
+      "contractFullyQualifiedName": "contracts/TreasuryCouncil.sol:TreasuryCouncil",
+      "contractName": "TreasuryCouncil",
+      "sourceName": "contracts/TreasuryCouncil.sol",
+      "deploymentBlock": 9874206,
+      "deploymentCommit": "72300906c431ba45fb97a518cf100b427aedc2cb"
+    },
+    "contracts/Router.sol:Router": {
+      "deployedAddress": "0xBE76CE0b1678Fd59A6f089787F4d0848199F58c1",
+      "deployTransaction": "0x547a48bacd46408a6f114e57ac5caef7fbd3b3af3ee99f26c4dce2864dee252c",
+      "isRouter": true,
+      "deployedBytecodeHash": "0x2aea524c244e5f3fd6a4f5c8dfa980b3388affed95f09e5bc62c777d8a86efde",
+      "contractFullyQualifiedName": "contracts/Router.sol:Router",
+      "contractName": "Router",
+      "sourceName": "contracts/Router.sol",
+      "deploymentBlock": 9874205,
+      "deploymentCommit": "72300906c431ba45fb97a518cf100b427aedc2cb"
+    }
+  }
+}

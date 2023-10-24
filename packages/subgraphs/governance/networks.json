@@ -1,19 +1,19 @@
 {
   "optimism": {
     "CoreContributor": {
-      "address": "0x341a0e7ad98D0F02bB1C1bC209ab98c23037EcE8",
+      "address": "0x5EF504102Ce19F1FD1C4ff71E9617271167cd299",
       "startBlock": 110873883
     },
     "Ecosystem": {
-      "address": "0xc458A3e489a4d024943cC5A1ec81AEB0382b9048",
+      "address": "0x28dd48B81Fbf61dD344d0b477529796140F9C8BD",
       "startBlock": 110873883
     },
     "Trader": {
-      "address": "0x009Caa9767B28779582f84d652Ad396bA7b7B558",
+      "address": "0xe185a085aF2923b0173fd0B9cdF153BBae64CB84",
       "startBlock": 110873883
     },
     "Treasury": {
-      "address": "0x286bf3d6b7C7C89B33c1EeEea7563FB886B9ea6d",
+      "address": "0x5AA73BDc9917aF57A8A69D712848aAee97eD08EE",
       "startBlock": 110873883
     }
   },

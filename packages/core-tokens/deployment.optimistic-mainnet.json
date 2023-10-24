@@ -1,14 +1,14 @@
 {
     "investorToken": {
-        "address": "0x7484da8fDACC2EFd0D8feFADc1ff5b1d0636313e",
+        "address": "0x7D21eA3233E5D13A1EF93de88ec83AE3824aeFCe",
         "contract": "contracts/InvestorToken.sol:InvestorToken",
         "constructorArguments": [
             []
         ],
-        "tx": "0x7c04cc2536bb6a3226b231e518e77c6a3f8cfcb71c93a2ba740ed06a3b35c9ef"
+        "tx": "0x80d567d9fa0b1ffaf3d8c7bea7821b25c87d2493bcb028ae05051b1207c04ed7"
     },
     "ccToken": {
-        "address": "0x0B8225F7Be9e2368f96BaC61f0fBE692Ce9E3887",
+        "address": "0xB98Ff019b9beC90eD3A583B1F361Deccf9DC98Ce",
         "contract": "contracts/CoreContributorToken.sol:CoreContributorToken",
         "constructorArguments": [
             [
@@ -18,12 +18,12 @@
                 "0x832f971D14D66b05ccD05406F114D37Ae27Fa264"
             ]
         ],
-        "tx": "0xee414ddeedb9f6691661c215118727d56d5bbadb95e66d19e45b70b7e02aed6e"
+        "tx": "0xe86bac4c46ecfa79249838b90c2d312f52476945d6aa2a028ddbf4482a736b3b"
     },
     "blankCounting": {
-        "address": "0x300eD1f54e336e049c0C47540CC5986813558E52",
+        "address": "0x20dfd1223F47abB5aa20E0b2be682C32E9f27929",
         "contract": "contracts/BlankCounting.sol:BlankCounting",
         "constructorArguments": [],
-        "tx": "0x295f58a2070ec7a1d9b3c30de17e3c01a1c05dfcb58327405308035402086e64"
+        "tx": "0x49b0a9d78ab694e51cb34ea9e8afc93da3a6a962f97a5f032eef77c9c8ea1265"
     }
 }
