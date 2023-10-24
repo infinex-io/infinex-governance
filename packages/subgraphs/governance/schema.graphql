@@ -5,6 +5,7 @@ type Vote @entity {
   epochIndex: String!
   votePower: BigInt!
   contract: String!
+  tx: Bytes!
 }
 
 type VoteResult @entity {

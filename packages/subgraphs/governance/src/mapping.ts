@@ -4,7 +4,6 @@ import {
   VoteWithdrawn
 } from "../generated/CoreContributor/ElectionModule";
 import { Vote, VoteResult } from "../generated/schema";
-import { ONE_BI, ZERO_BI } from "./helpers";
 import { ElectionModule } from "../generated/Trader/ElectionModule";
 
 export function handleVoteRecorded(event: VoteRecorded): void {
@@ -16,16 +15,17 @@ export function handleVoteRecorded(event: VoteRecorded): void {
     .concat(event.params.epochIndex.toString());
 
   let voteRecord = new Vote(id);
-  let votePower = BigInt.fromString(event.params.votePower.toString());
 
   voteRecord.ballotId = event.params.ballotId;
   voteRecord.epochIndex = event.params.epochIndex.toString();
   voteRecord.voter = event.params.voter.toHexString();
-  voteRecord.votePower = votePower;
+  voteRecord.votePower = event.params.votePower;
   voteRecord.contract = event.address.toHexString();
+  voteRecord.tx = event.transaction.hash;
   voteRecord.save();
 
-  let resultId = event.params.ballotId.toHexString();
+  let resultId =
+    event.address.toHexString() + "." + event.params.ballotId.toHexString();
   let result = VoteResult.load(resultId);
   if (result == null) {
     const module = ElectionModule.bind(event.address);
@@ -38,8 +38,8 @@ export function handleVoteRecorded(event: VoteRecorded): void {
   }
 
   result.ballotId = event.params.ballotId;
-  result.votePower = result.votePower.plus(votePower);
-  result.voteCount = result.voteCount.plus(ONE_BI);
+  result.votePower = result.votePower.plus(event.params.votePower);
+  result.voteCount = result.voteCount.plus(BigInt.fromI32(1));
   result.save();
 }
 
@@ -53,13 +53,13 @@ export function handleVoteWithdrawn(event: VoteWithdrawn): void {
 
   store.remove("Vote", id);
 
-  let resultId = event.params.ballotId.toHexString();
+  let resultId =
+    event.address.toHexString() + "." + event.params.ballotId.toHexString();
   let result = VoteResult.load(resultId);
   if (result !== null) {
-    let votePower = BigInt.fromString(event.params.votePower.toString());
-    result.votePower = result.votePower.minus(votePower);
-    result.voteCount = result.voteCount.minus(ONE_BI);
-    if (result.voteCount === ZERO_BI) {
+    result.votePower = result.votePower.minus(event.params.votePower);
+    result.voteCount = result.voteCount.minus(BigInt.fromI32(1));
+    if (result.voteCount.equals(BigInt.zero())) {
       store.remove("VoteResult", resultId);
     } else {
       result.save();
