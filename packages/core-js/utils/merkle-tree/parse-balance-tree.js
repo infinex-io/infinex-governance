@@ -17,7 +17,7 @@ function parseBalanceMap(balances) {
 
   const dataByAddress = balancesInNewFormat.reduce((memo, { address: account, balance }) => {
     if (!isAddress(account)) {
-      throw new Error(`Found invalid address: ${account}`);
+      throw new Error(`Found invalid address: ${account} ${balance}`);
     }
     const parsed = getAddress(account);
     if (memo[parsed]) throw new Error(`Duplicate address: ${parsed}`);
