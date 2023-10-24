@@ -5,6 +5,7 @@ import {
 } from "../generated/CoreContributor/ElectionModule";
 import { Vote, VoteResult } from "../generated/schema";
 import { ONE_BI, ZERO_BI } from "./helpers";
+import { ElectionModule } from "../generated/Trader/ElectionModule";
 
 export function handleVoteRecorded(event: VoteRecorded): void {
   let id = event.params.voter
@@ -27,11 +28,13 @@ export function handleVoteRecorded(event: VoteRecorded): void {
   let resultId = event.params.ballotId.toHexString();
   let result = VoteResult.load(resultId);
   if (result == null) {
+    const module = ElectionModule.bind(event.address);
     result = new VoteResult(resultId);
     result.votePower = BigInt.fromString("0");
     result.voteCount = BigInt.fromString("0");
     result.epochIndex = event.params.epochIndex.toString();
     result.contract = event.address.toHexString();
+    result.candidate = module.getBallotCandidates(event.params.ballotId)[0];
   }
 
   result.ballotId = event.params.ballotId;
