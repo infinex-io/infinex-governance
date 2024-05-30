@@ -34,5 +34,27 @@
       "address": "0x227FE27C0F9B180f090968AD79C0B8191cE2B2AE",
       "startBlock": 9862622
     }
+  },
+  "base-sepolia": {
+    "Ecosystem": {
+      "address": "0xad95e478753aa35e777da422d941dc6ccd91ed8b",
+      "startBlock": 10275900
+    },
+    "Operations": {
+      "address": "0x121f9b3024a2198047f55a3d143dd3279f26a2b1",
+      "startBlock": 10275900
+    },
+    "Security": {
+      "address": "0x3cec51214ecbc8e8bb6cb4561584a135dab7b67d",
+      "startBlock": 10275900
+    },
+    "Trader": {
+      "address": "0x6952e6564cef8d6c065a5b3f18affa727ceea187",
+      "startBlock": 10275900
+    },
+    "Treasury": {
+      "address": "0x577c9fdc3056b33b476404c0b9c13f6d85bdbfb1",
+      "startBlock": 10275900
+    }
   }
 }
