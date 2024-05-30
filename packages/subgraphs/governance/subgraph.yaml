@@ -5,12 +5,12 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: CoreContributor
-    network: optimism
+    name: Ecosystem
+    network: base-sepolia
     source:
       abi: ElectionModule
-      address: "0x5EF504102Ce19F1FD1C4ff71E9617271167cd299"
-      startBlock: 110873883
+      address: "0xad95e478753aa35e777da422d941dc6ccd91ed8b"
+      startBlock: 10275900
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -27,12 +27,34 @@ dataSources:
           handler: handleVoteWithdrawn
       file: ./src/mapping.ts
   - kind: ethereum/contract
-    name: Ecosystem
-    network: optimism
+    name: Operations
+    network: base-sepolia
     source:
       abi: ElectionModule
-      address: "0x28dd48B81Fbf61dD344d0b477529796140F9C8BD"
-      startBlock: 110873883
+      address: "0x121f9b3024a2198047f55a3d143dd3279f26a2b1"
+      startBlock: 10275900
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Vote
+      abis:
+        - name: ElectionModule
+          file: ./abis/ElectionModule.json
+      eventHandlers:
+        - event: VoteRecorded(indexed address,indexed bytes32,indexed uint256,uint256)
+          handler: handleVoteRecorded
+        - event: VoteWithdrawn(indexed address,indexed bytes32,indexed uint256,uint256)
+          handler: handleVoteWithdrawn
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: Security
+    network: base-sepolia
+    source:
+      abi: ElectionModule
+      address: "0x3cec51214ecbc8e8bb6cb4561584a135dab7b67d"
+      startBlock: 10275900
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -50,11 +72,11 @@ dataSources:
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: Trader
-    network: optimism
+    network: base-sepolia
     source:
       abi: ElectionModule
-      address: "0xe185a085aF2923b0173fd0B9cdF153BBae64CB84"
-      startBlock: 110873883
+      address: "0x6952e6564cef8d6c065a5b3f18affa727ceea187"
+      startBlock: 10275900
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -72,11 +94,11 @@ dataSources:
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: Treasury
-    network: optimism
+    network: base-sepolia
     source:
       abi: ElectionModule
-      address: "0x5AA73BDc9917aF57A8A69D712848aAee97eD08EE"
-      startBlock: 110873883
+      address: "0x577c9fdc3056b33b476404c0b9c13f6d85bdbfb1"
+      startBlock: 10275900
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

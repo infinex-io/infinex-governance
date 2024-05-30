@@ -2,17 +2,11 @@
   "name": "test-graph",
   "version": "0.1.0",
   "scripts": {
-    "create": "graph create synthetix-v3/testgraph --node https://api.thegraph.com/deploy/",
-    "create-local": "graph create synthetix-v3/testgraph --node http://127.0.0.1:8020",
-    "codegen": "graph codegen",
-    "build": "graph build",
-    "deploy-goerli": "graph deploy michaelcarrotanderson/governance-goerli --network goerli --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy": "graph deploy michaelcarrotanderson/governance-optimism --network optimism --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy-local": "graph deploy infinex-io/testgraph --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020"
+    "build": "graph codegen && graph build",
+    "deploy": "graph deploy --network base-sepolia --studio dev-infinex-governance"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.59.0",
-    "@graphprotocol/graph-ts": "^0.31.0"
+    "@graphprotocol/graph-ts": "0.34.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
